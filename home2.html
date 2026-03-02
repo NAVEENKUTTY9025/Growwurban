@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Groww Urban – alternative home page with fresh perspective on urban farming">
+    <title>Groww Urban | Urban Farming Collective</title>
+     <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & VARIABLES (SAME AS INDEX) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #FAFAFA;
+            --bg-secondary: #f0f0e8;
+            --text-main: #111111;
+            --text-heading: #111111;
+            --card-bg: #ffffff;
+            --border-light: #ddddd5;
+            --accent-green: #556B2F;
+            --accent-brown: #6D4C41;
+            --navbar-bg: #111111;
+
+            --olive: #556B2F;
+            --soil: #6D4C41;
+            --deep: #111111;
+            --smoke: #FAFAFA;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #111111;
+            --bg-secondary: #1e1e1e;
+            --text-main: #EAEAEA;
+            --text-heading: #FAFAFA;
+            --card-bg: #222222;
+            --border-light: #3a3a3a;
+            --accent-green: #6b8c3e;
+            --accent-brown: #8b6b5a;
+            --navbar-bg: #000000;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* navbar (identical to index) */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid #2f2f2f;
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--olive);
+            overflow: hidden;
+        }
+        .logo-icon i {
+            color: var(--olive);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--olive);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-link {
+            color: #e0e0e0;
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #FAFAFA;
+            background-color: #2a2a2a;
+            border-radius: 30px;
+        }
+        .nav-link.active {
+            color: #FAFAFA;
+            font-weight: 600;
+            background: var(--olive);
+            border-radius: 30px;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #ccc;
+            transition: 0.2s;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .dropdown-item:hover {
+            background-color: var(--olive);
+            color: #fff;
+            padding-left: 28px;
+            border-radius: 12px;
+        }
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: 0.2s;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .navbar-right-desktop {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .icon-btn:hover {
+            background-color: var(--olive);
+            color: var(--deep);
+        }
+        .login-btn {
+            background-color: var(--olive);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .login-btn:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: white;
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--deep);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .mobile-menu-close {
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .mobile-menu-items {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a2a2a;
+            transition: 0.2s;
+        }
+        .mobile-menu-item i {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-menu-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-dropdown {
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        .mobile-dropdown-btn i:first-child {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-dropdown-btn .fa-chevron-down {
+            color: var(--olive);
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #1a1a1a;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+        }
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+            padding: 0.75rem 0;
+        }
+        .mobile-dropdown-content a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: #ccc;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        .mobile-dropdown-content a:hover {
+            background-color: var(--olive);
+            color: white;
+        }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a2a2a;
+            transition: 0.2s;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .mobile-action-item i {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-action-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-separator {
+            margin: 1rem 0 0.5rem 0;
+            border-top: 2px solid #2f2f2f;
+        }
+        
+        /* ----- HOME 2 SPECIFIC STYLES ----- */
+        
+        /* Hero Section 2 - Different Layout */
+        .hero2 {
+            background-color: var(--deep);
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+            padding-top: 80px;
+        }
+        .hero2-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: radial-gradient(circle at 20% 50%, var(--olive) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .hero2-content {
+            position: relative;
+            z-index: 10;
+            max-width: 48rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .hero2-badge {
+            background-color: rgba(85,107,47,0.2);
+            color: var(--olive);
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(85,107,47,0.3);
+        }
+        .hero2-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        @media (min-width: 768px) {
+            .hero2-title {
+                font-size: 5rem;
+            }
+        }
+        .hero2-title span {
+            color: var(--olive);
+            display: block;
+        }
+        .hero2-text {
+            font-size: 1.25rem;
+            color: #d1d5db;
+            margin-bottom: 2.5rem;
+            max-width: 36rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero2-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .hero2-btn-primary {
+            background-color: var(--olive);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .hero2-btn-primary:hover {
+            background-color: white;
+            color: var(--deep);
+            transform: translateY(-2px);
+        }
+        .hero2-btn-outline {
+            border: 2px solid white;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            background: transparent;
+            cursor: pointer;
+        }
+        .hero2-btn-outline:hover {
+            background-color: white;
+            color: var(--deep);
+            transform: translateY(-2px);
+        }
+        .hero2-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin-top: 3rem;
+            color: white;
+        }
+        .hero2-stat-item {
+            text-align: center;
+        }
+        .hero2-stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--olive);
+        }
+        .hero2-stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+        
+        /* Section 1: Featured Products/Categories */
+        .featured-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .section-header {
+            text-align: center;
+            max-width: 48rem;
+            margin: 0 auto 3.5rem;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+        }
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 1024px) {
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .featured-card {
+            background: var(--card-bg);
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 1px solid rgba(85,107,47,0.2);
+            transition: transform 0.2s;
+        }
+        .featured-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--olive);
+        }
+        .featured-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .featured-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: var(--olive);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .featured-content {
+            padding: 1.5rem;
+        }
+        .featured-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .featured-price {
+            color: var(--olive);
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Section 2: How It Works - Video Style */
+        .how-it-works {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+        .how-grid {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+        @media (min-width: 1024px) {
+            .how-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .how-video {
+            border-radius: 2rem;
+            overflow: hidden;
+            min-height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2069&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            border: 4px solid rgba(85,107,47,0.3);
+        }
+        .how-video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .how-play-btn {
+            width: 5rem;
+            height: 5rem;
+            background-color: var(--olive);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .how-play-btn:hover {
+            transform: scale(1.1);
+            background-color: white;
+            color: var(--olive);
+        }
+        .how-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .how-step {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+        .how-step-number {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--olive);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .how-step-content h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Section 3: Seasonal Picks/Products */
+        .seasonal-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .seasonal-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .seasonal-tab {
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            background: transparent;
+            border: 2px solid var(--olive);
+            color: var(--text-main);
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .seasonal-tab.active {
+            background: var(--olive);
+            color: white;
+        }
+        .seasonal-tab:hover {
+            background: var(--olive);
+            color: white;
+        }
+        .seasonal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .seasonal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .seasonal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .seasonal-card {
+            background: var(--card-bg);
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 1px solid rgba(85,107,47,0.2);
+            transition: 0.2s;
+        }
+        .seasonal-card:hover {
+            border-color: var(--olive);
+            transform: scale(1.02);
+        }
+        .seasonal-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        .seasonal-info {
+            padding: 1.5rem;
+        }
+        .seasonal-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .seasonal-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .seasonal-price {
+            color: var(--olive);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .seasonal-btn {
+            background-color: var(--soil);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .seasonal-btn:hover {
+            background-color: var(--olive);
+        }
+        
+        /* Section 4: Testimonials with Images */
+        .testimonials-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        @media (max-width: 1024px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2rem;
+            position: relative;
+            border: 1px solid rgba(85,107,47,0.2);
+        }
+        .testimonial-quote {
+            color: var(--olive);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .testimonial-avatar {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid var(--olive);
+        }
+        .testimonial-name h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        .testimonial-name p {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+        .testimonial-rating {
+            color: #ffb83b;
+            margin-top: 0.5rem;
+        }
+        
+        /* Section 5: Instagram Feed/Gallery */
+        .instagram-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .instagram-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .instagram-header h2 {
+            font-size: 2.5rem;
+        }
+        .instagram-header a {
+            color: var(--olive);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+        }
+        .instagram-header a:hover {
+            gap: 1rem;
+        }
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 1024px) {
+            .instagram-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .instagram-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .instagram-item {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: pointer;
+        }
+        .instagram-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(85,107,47,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.2s;
+            color: white;
+            font-size: 2rem;
+        }
+        .instagram-item:hover .instagram-overlay {
+            opacity: 1;
+        }
+        
+        /* Newsletter (modified) */
+        .newsletter2 {
+            background: linear-gradient(135deg, var(--deep) 0%, var(--soil) 100%);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .newsletter2-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 36rem;
+            margin: 0 auto;
+        }
+        .newsletter2 h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .newsletter2 p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+        .newsletter2-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        @media (max-width: 640px) {
+            .newsletter2-form {
+                flex-direction: column;
+            }
+        }
+        .newsletter2-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 9999px;
+            border: none;
+            outline: none;
+        }
+        .newsletter2-btn {
+            background-color: var(--olive);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .newsletter2-btn:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        .newsletter2-pattern {
+            position: absolute;
+            bottom: -2rem;
+            right: -2rem;
+            font-size: 8rem;
+            color: rgba(255,255,255,0.1);
+            transform: rotate(15deg);
+        }
+        
+        /* footer (same as index) */
+        .footer {
+            background-color: var(--deep);
+            color: white;
+            padding: 4rem 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .footer-logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--olive);
+        }
+        .footer-logo-icon i {
+            color: var(--olive);
+            font-size: 2rem;
+        }
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-text span {
+            color: var(--olive);
+        }
+        .footer-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--olive);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #9ca3af;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--olive);
+        }
+        .footer-input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            margin-bottom: 0.5rem;
+            border: none;
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--olive);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .footer-btn:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        #scroll-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--olive);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 100;
+            display: none;
+        }
+        #scroll-top:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.7s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (identical to index) -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+            <div>
+                <div class="logo-text">Groww Urban</div>
+                <span class="logo-tagline">concrete harvest</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <div class="nav-link active" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <div class="dropdown" id="dashboard-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href=" client.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> client</a>
+                    <a href=" admin.html" class="dropdown-item"><i class="fas fa-user-shield mr-2"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login/Register</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu overlay -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+            <div>
+                <div class="logo-text">GrowwUrban</div>
+                <span class="logo-tagline">concrete harvest</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <!-- Home Dropdown - using unique ID -->
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                    <span><i class="fas fa-home"></i> Home </span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="home-mobile" class="mobile-dropdown-content">
+                    <a href="index.html"> Home 1</a>
+                    <a href="home2.html"> Home 2</a>
+                </div>
+            </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="services.html" class="mobile-menu-item"><i class="fas fa-seedling"></i> Services</a>
+        <a href="blog.html" class="mobile-menu-item"><i class="fas fa-blog"></i> Blog</a>
+        <a href="pricing.html" class="mobile-menu-item"><i class="fas fa-tag"></i> Pricing</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> FAQ</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <!-- Dashboard Dropdown - using unique ID -->
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')">
+                <span><i class="fas fa-chart-pie"></i> Dashboard</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="dashboard-mobile" class="mobile-dropdown-content">
+                 <a href=" client.html"> client</a>
+                <a href=" admin.html"></i> Admin</a>
+            </div>
+        </div>
+        
+        <!-- separator before the three buttons (Logout, RTL, Theme) -->
+        <div class="mobile-separator"></div>
+        
+        <!-- exactly three buttons: Logout, RTL, Theme (no extra text, just like image) -->
+        <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> login/register</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- HERO 2 - Different Layout -->
+<section class="hero2">
+    <div class="hero2-pattern"></div>
+    <div class="container">
+        <div class="hero2-content fade-in-up">
+            <span class="hero2-badge"><i class="fas fa-seedling"></i> Welcome to the future of farming</span>
+            <h1 class="hero2-title">Grow your own <span>paradise in the city</span></h1>
+            <p class="hero2-text">Join 12,000+ urban farmers transforming balconies, rooftops, and windowsills into thriving gardens. No yard required.</p>
+            <div class="hero2-buttons">
+                <a href="#" class="hero2-btn-primary"><i class="fas fa-seedling"></i> Start your garden</a>
+                <a href="#" class="hero2-btn-outline"><i class="fas fa-play"></i> Watch how it works</a>
+            </div>
+            <div class="hero2-stats">
+                <div class="hero2-stat-item">
+                    <div class="hero2-stat-number">15+</div>
+                    <div class="hero2-stat-label">Kits Available</div>
+                </div>
+                <div class="hero2-stat-item">
+                    <div class="hero2-stat-number">95%</div>
+                    <div class="hero2-stat-label">Success Rate</div>
+                </div>
+                <div class="hero2-stat-item">
+                    <div class="hero2-stat-number">24/7</div>
+                    <div class="hero2-stat-label">Support</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 1: FEATURED PRODUCTS (HD Images) -->
+<section class="featured-section">
+    <div class="container">
+        <div class="section-header">
+            <span style="color: var(--olive); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">Shop by category</span>
+            <h2>Our most loved starter kits</h2>
+            <p style="opacity: 0.8;">Everything you need to start growing, curated by our farmers</p>
+        </div>
+        <div class="featured-grid">
+            <div class="featured-card">
+                <div class="featured-image" style="background-image: url('/images/roof.jpg');">
+                    <span class="featured-tag">Bestseller</span>
+                </div>
+                <div class="featured-content">
+                    <h3>Rooftop Salad Kit</h3>
+                    <p style="opacity: 0.7;">Lettuce, tomatoes, herbs</p>
+                    <div class="featured-price">$39</div>
+                </div>
+            </div>
+            <div class="featured-card">
+                <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=2070&auto=format&fit=crop');">
+                    <span class="featured-tag">New</span>
+                </div>
+                <div class="featured-content">
+                    <h3>Herb Garden Pro</h3>
+                    <p style="opacity: 0.7;">Basil, mint, rosemary, thyme</p>
+                    <div class="featured-price">$45</div>
+                </div>
+            </div>
+            <div class="featured-card">
+                <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=2070&auto=format&fit=crop');">
+                    <span class="featured-tag">-20%</span>
+                </div>
+                <div class="featured-content">
+                    <h3>Microgreens Starter</h3>
+                    <p style="opacity: 0.7;">Harvest in 10 days</p>
+                    <div class="featured-price">$29 <span style="text-decoration: line-through; opacity: 0.5; font-size: 0.875rem;">$36</span></div>
+                </div>
+            </div>
+            <div class="featured-card">
+                <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2069&auto=format&fit=crop');">
+                    <span class="featured-tag">Hydroponic</span>
+                </div>
+                <div class="featured-content">
+                    <h3>AquaFarm System</h3>
+                    <p style="opacity: 0.7;">Soil-free growing</p>
+                    <div class="featured-price">$89</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2: HOW IT WORKS (with HD video thumbnail) -->
+<section class="how-it-works">
+    <div class="container">
+        <div class="how-grid">
+            <div class="how-video">
+                <div class="how-video-overlay">
+                    <div class="how-play-btn" onclick="alert('Video would play here - urban farming tutorial')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="how-content">
+                <span style="color: var(--olive); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">simple process</span>
+                <h2>Start growing in 4 easy steps</h2>
+                <p style="margin-bottom: 2rem; opacity: 0.8;">No experience? No problem. We'll guide you from seed to harvest.</p>
+                
+                <div class="how-step">
+                    <div class="how-step-number">1</div>
+                    <div class="how-step-content">
+                        <h4>Choose your kit</h4>
+                        <p style="opacity: 0.7;">Pick from veggie, herb, or microgreen starters based on your space and taste.</p>
+                    </div>
+                </div>
+                
+                <div class="how-step">
+                    <div class="how-step-number">2</div>
+                    <div class="how-step-content">
+                        <h4>Set up in 15 minutes</h4>
+                        <p style="opacity: 0.7;">Everything arrives ready to go – just unpack, plant, and water.</p>
+                    </div>
+                </div>
+                
+                <div class="how-step">
+                    <div class="how-step-number">3</div>
+                    <div class="how-step-content">
+                        <h4>Watch it grow</h4>
+                        <p style="opacity: 0.7;">Get weekly tips via text and join our community of urban farmers.</p>
+                    </div>
+                </div>
+                
+                <div class="how-step">
+                    <div class="how-step-number">4</div>
+                    <div class="how-step-content">
+                        <h4>Harvest & enjoy</h4>
+                        <p style="opacity: 0.7;">Fresh, organic produce right from your balcony – taste the difference.</p>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn-primary" style="display: inline-block; margin-top: 1rem;">See all kits →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: SEASONAL PICKS (HD Images) -->
+<section class="seasonal-section">
+    <div class="container">
+        <div class="section-header">
+            <span style="color: var(--olive); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">seasonal favorites</span>
+            <h2>What's growing this month</h2>
+            <p style="opacity: 0.8;">Fresh picks for June – ready to ship</p>
+        </div>
+        
+        <div class="seasonal-tabs">
+            <button class="seasonal-tab active">All</button>
+            <button class="seasonal-tab">Vegetables</button>
+            <button class="seasonal-tab">Herbs</button>
+            <button class="seasonal-tab">Microgreens</button>
+            <button class="seasonal-tab">Hydroponic</button>
+        </div>
+        
+        <div class="seasonal-grid">
+            <div class="seasonal-card">
+                <div class="seasonal-image" style="background-image: url('https://images.unsplash.com/photo-1592841200221-a6898f307baa?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="seasonal-info">
+                    <h3>Cherry Tomato Trio</h3>
+                    <p style="opacity: 0.7;">Sweet 100, Sun Gold, Black Cherry</p>
+                    <div class="seasonal-meta">
+                        <span class="seasonal-price">$34</span>
+                        <a href="#" class="seasonal-btn">Add</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seasonal-card">
+                <div class="seasonal-image" style="background-image: url('/images/download\ \(3\).jpg');"></div>
+                <div class="seasonal-info">
+                    <h3>Italian Herb Collection</h3>
+                    <p style="opacity: 0.7;">Basil, Oregano, Parsley, Thyme</p>
+                    <div class="seasonal-meta">
+                        <span class="seasonal-price">$28</span>
+                        <a href="#" class="seasonal-btn">Add</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seasonal-card">
+                <div class="seasonal-image" style="background-image: url('https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="seasonal-info">
+                    <h3>Spicy Microgreens</h3>
+                    <p style="opacity: 0.7;">Radish, Mustard, Arugula mix</p>
+                    <div class="seasonal-meta">
+                        <span class="seasonal-price">$22</span>
+                        <a href="#" class="seasonal-btn">Add</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seasonal-card">
+                <div class="seasonal-image" style="background-image: url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1887&auto=format&fit=crop');"></div>
+                <div class="seasonal-info">
+                    <h3>Leafy Greens Bundle</h3>
+                    <p style="opacity: 0.7;">Kale, Spinach, Swiss Chard</p>
+                    <div class="seasonal-meta">
+                        <span class="seasonal-price">$32</span>
+                        <a href="#" class="seasonal-btn">Add</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seasonal-card">
+                <div class="seasonal-image" style="background-image: url('https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="seasonal-info">
+                    <h3>Cabbage Tower</h3>
+                    <p style="opacity: 0.7;">Ever-bearing variety</p>
+                    <div class="seasonal-meta">
+                        <span class="seasonal-price">$48</span>
+                        <a href="#" class="seasonal-btn">Add</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seasonal-card">
+                <div class="seasonal-image" style="background-image: url('/images/CF.jpg');"></div>
+                <div class="seasonal-info">
+                    <h3>Cauliflower</h3>
+                    <p style="opacity: 0.7;">Bell, Jalapeño, Banana peppers</p>
+                    <div class="seasonal-meta">
+                        <span class="seasonal-price">$36</span>
+                        <a href="#" class="seasonal-btn">Add</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2.5rem;">
+            <a href="#" class="btn-primary" style="background: var(--soil);">View all products <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 4: TESTIMONIALS (with HD avatar images) -->
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-header">
+            <span style="color: var(--olive); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">happy growers</span>
+            <h2>What our community says</h2>
+            <p style="opacity: 0.8;">Join 12,000+ urban farmers growing with us</p>
+        </div>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                <p class="testimonial-text">"I never thought I could grow food on my 8th-floor balcony. The rooftop salad kit produced more tomatoes than I could eat! Now my whole building wants one."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" style="background-image: url('/images/c1.jpg');"></div>
+                    <div class="testimonial-name">
+                        <h4>Sarah Johnson</h4>
+                        <p>Brooklyn, NY</p>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                <p class="testimonial-text">"The hydroponic system is genius. I'm growing basil and lettuce year-round in my kitchen. The workshop taught me everything I needed to know. Highly recommend!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop');"></div>
+                    <div class="testimonial-name">
+                        <h4>Michael Chen</h4>
+                        <p>Chicago, IL</p>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                <p class="testimonial-text">"My kids love the microgreens kit – they harvest their own snacks in just 10 days. It's been a game-changer for teaching them where food comes from."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1974&auto=format&fit=crop');"></div>
+                    <div class="testimonial-name">
+                        <h4>Lisa Rodriguez</h4>
+                        <p>Austin, TX</p>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2.5rem;">
+            <a href="#" class="btn-primary" style="background: transparent; border: 2px solid var(--olive); color: var(--text-main);">Read more stories <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 5: INSTAGRAM GALLERY (HD Images) -->
+<section class="instagram-section">
+    <div class="container">
+        <div class="instagram-header">
+            <h2>Follow our <span style="color: var(--olive);">urban garden</span></h2>
+            <a href="#"><i class="fab fa-instagram"></i> @groww.urban <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="instagram-grid">
+            <div class="instagram-item" style="background-image: url('https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=2070&auto=format&fit=crop');">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item" style="background-image: url('https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=2070&auto=format&fit=crop');">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item" style="background-image: url('/images/CF.jpg');">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item" style="background-image: url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=2070&auto=format&fit=crop');">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item" style="background-image: url('https://images.unsplash.com/photo-1592841200221-a6898f307baa?q=80&w=2070&auto=format&fit=crop');">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item" style="background-image: url('/images/download\ \(3\).jpg');">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item" style="background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2069&auto=format&fit=crop');">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item" style="background-image: url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1887&auto=format&fit=crop');">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NEWSLETTER 2 -->
+<section class="newsletter2">
+    <div class="container">
+        <div class="newsletter2-content">
+            <h2>Grow with us 🌱</h2>
+            <p>Get weekly growing tips, exclusive discounts, and urban farming inspiration.</p>
+            <div class="newsletter2-form">
+                <input type="email" placeholder="Enter your email" class="newsletter2-input">
+                <button class="newsletter2-btn">Subscribe</button>
+            </div>
+        </div>
+        <div class="newsletter2-pattern">
+            <i class="fas fa-seedling"></i>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER (same as index) -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <div class="footer-logo-icon"><i class="fas fa-seedling"></i></div>
+                    <div>
+                        <div class="footer-logo-text">Groww Urban</div>
+                        <span class="footer-tagline">concrete harvest</span>
+                    </div>
+                </div>
+               <p style="color:#9ca3af;">growing food, community & future
+                    At GrowwUrban, we believe in transforming rooftops, balconies, and small spaces into thriving green ecosystems..</p>
+            </div>
+            <div><h3 class="footer-heading">Quick links</h3><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="blog.html">Blog</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+           <div>
+    <h3 class="footer-heading">Support</h3>
+    <ul class="footer-links">
+        <li><a href="faq.html">Help Center</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Order Tracking</a></li>
+        <li><a href="#">Return Policy</a></li>
+    </ul>
+</div>
+            <div><h3 class="footer-heading">Stay grounded </h3><form><input type="email" placeholder="email" class="footer-input"><button class="footer-btn">subscribe</button></form></div>
+        </div>
+        <div class="copyright">© 2026 Groww Urban – concrete harvest.</div>
+    </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    // theme / rtl / dropdown logic (identical to index)
+    const htmlEl = document.documentElement;
+    const desktopTheme = document.getElementById('desktop-theme-toggle');
+    const mobileTheme = document.getElementById('mobile-theme-toggle');
+    const desktopIcon = document.getElementById('desktop-theme-icon');
+    const mobileIcon = document.getElementById('mobile-theme-icon');
+    const desktopRtl = document.getElementById('desktop-rtl-toggle');
+    const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+    let theme = localStorage.getItem('theme') || 'light';
+    htmlEl.setAttribute('data-theme', theme);
+    if (theme === 'dark') { htmlEl.classList.add('dark'); if(desktopIcon) desktopIcon.className = 'fas fa-sun'; if(mobileIcon) mobileIcon.className = 'fas fa-sun'; }
+
+    function toggleTheme() {
+        let isDark = htmlEl.getAttribute('data-theme') === 'dark';
+        let newTheme = isDark ? 'light' : 'dark';
+        htmlEl.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme);
+        if (newTheme === 'dark') htmlEl.classList.add('dark'); else htmlEl.classList.remove('dark');
+        if (desktopIcon) desktopIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+        if (mobileIcon) mobileIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+    }
+    if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+    if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+    function toggleRtl() { let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'; htmlEl.setAttribute('dir', dir); localStorage.setItem('direction', dir); }
+    if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+    if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+    function toggleDesktopDropdown(id) {
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+        document.getElementById(id).classList.toggle('active');
+    }
+    window.toggleDesktopDropdown = toggleDesktopDropdown;
+
+    function toggleMobileDropdown(id) {
+        document.getElementById(id).classList.toggle('active');
+    }
+    window.toggleMobileDropdown = toggleMobileDropdown;
+
+    // mobile menu open/close
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('close-mobile-menu');
+
+    if(menuBtn) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.add('active');
+        });
+    }
+    if(closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.remove('active');
+        });
+    }
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            mobileMenu.classList.remove('active');
+        }
+    });
+
+    // scroll top
+    const scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) scrollBtn.style.display = 'block';
+        else scrollBtn.style.display = 'none';
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+    });
+    
+    // seasonal tabs functionality (simple demo)
+    document.querySelectorAll('.seasonal-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.seasonal-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>

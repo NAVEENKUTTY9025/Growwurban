@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Groww Urban – our mission, team, and story behind urban farming.">
+    <title>Groww Urban | About Us</title>
+     <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & VARIABLES (SAME AS INDEX) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #FAFAFA;
+            --bg-secondary: #f0f0e8;
+            --text-main: #111111;
+            --text-heading: #111111;
+            --card-bg: #ffffff;
+            --border-light: #ddddd5;
+            --accent-green: #556B2F;
+            --accent-brown: #6D4C41;
+            --navbar-bg: #111111;
+
+            --olive: #556B2F;
+            --soil: #6D4C41;
+            --deep: #111111;
+            --smoke: #FAFAFA;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #111111;
+            --bg-secondary: #1e1e1e;
+            --text-main: #EAEAEA;
+            --text-heading: #FAFAFA;
+            --card-bg: #222222;
+            --border-light: #3a3a3a;
+            --accent-green: #6b8c3e;
+            --accent-brown: #8b6b5a;
+            --navbar-bg: #000000;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* navbar (identical to index) */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid #2f2f2f;
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--olive);
+            overflow: hidden;
+        }
+        .logo-icon i {
+            color: var(--olive);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--olive);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-link {
+            color: #e0e0e0;
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #FAFAFA;
+            background-color: #2a2a2a;
+            border-radius: 30px;
+        }
+        .nav-link.active {
+            color: #FAFAFA;
+            font-weight: 600;
+            background: var(--olive);
+            border-radius: 30px;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #ccc;
+            transition: 0.2s;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .dropdown-item:hover {
+            background-color: var(--olive);
+            color: #fff;
+            padding-left: 28px;
+            border-radius: 12px;
+        }
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: 0.2s;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .navbar-right-desktop {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .icon-btn:hover {
+            background-color: var(--olive);
+            color: var(--deep);
+        }
+        .login-btn {
+            background-color: var(--olive);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .login-btn:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: white;
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--deep);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .mobile-menu-close {
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .mobile-menu-items {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a2a2a;
+            transition: 0.2s;
+        }
+        .mobile-menu-item i {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-menu-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-dropdown {
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        .mobile-dropdown-btn i:first-child {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-dropdown-btn .fa-chevron-down {
+            color: var(--olive);
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #1a1a1a;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+        }
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+            padding: 0.75rem 0;
+        }
+        .mobile-dropdown-content a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: #ccc;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        .mobile-dropdown-content a:hover {
+            background-color: var(--olive);
+            color: white;
+        }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a2a2a;
+            transition: 0.2s;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .mobile-action-item i {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-action-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-separator {
+            margin: 1rem 0 0.5rem 0;
+            border-top: 2px solid #2f2f2f;
+        }
+        
+        /* ----- ABOUT PAGE SPECIFIC STYLES ----- */
+        .page-header {
+            background-color: var(--deep);
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22 width=%2240%22 height=%2240%22><path fill=%22%23556B2F%22 d=%22M0 0 L40 40 M40 0 L0 40%22 stroke-width=%221%22 stroke=%22%236D4C41%22 opacity=%220.4%22 /></svg>');
+        }
+        .page-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+        }
+        .page-title span {
+            color: var(--olive);
+        }
+        .page-subtitle {
+            color: #d1d5db;
+            font-size: 1.25rem;
+            max-width: 36rem;
+        }
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+        .breadcrumb a {
+            color: var(--olive);
+        }
+        
+        /* section 1: our story */
+        .story-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .story-grid {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+        @media (min-width: 1024px) {
+            .story-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .story-image {
+            border-radius: 2rem;
+            overflow: hidden;
+            min-height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            border: 4px solid rgba(85,107,47,0.3);
+        }
+        .story-badge {
+            display: inline-block;
+            background-color: var(--olive);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .story-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .story-text {
+            color: var(--text-main);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+        .story-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .story-stat {
+            text-align: center;
+        }
+        .story-stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--olive);
+        }
+        
+        /* section 2: mission & values */
+        .mission-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+        .mission-header {
+            text-align: center;
+            max-width: 48rem;
+            margin: 0 auto 3.5rem;
+        }
+        .mission-title {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .value-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 2rem;
+            text-align: center;
+            transition: transform 0.2s;
+            border: 1px solid rgba(85,107,47,0.2);
+        }
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--olive);
+        }
+        .value-icon {
+            width: 5rem;
+            height: 5rem;
+            background-color: rgba(85,107,47,0.1);
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: var(--olive);
+        }
+        .value-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .value-text {
+            opacity: 0.7;
+        }
+        
+        /* section 3: impact numbers */
+        .impact-section {
+            padding: 5rem 0;
+            background-color: var(--deep);
+            position: relative;
+            overflow: hidden;
+        }
+        .impact-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22 width=%2240%22 height=%2240%22><path fill=%22%23556B2F%22 d=%22M0 0 L40 40 M40 0 L0 40%22 stroke-width=%221%22 stroke=%22%236D4C41%22 /></svg>');
+        }
+        .impact-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+        .impact-header h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin: 1rem 0;
+        }
+        .impact-header p {
+            color: #d1d5db;
+            font-size: 1.125rem;
+        }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+        @media (max-width: 768px) {
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .impact-item {
+            text-align: center;
+            color: white;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+        .impact-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--olive);
+            margin-bottom: 0.5rem;
+        }
+        .impact-label {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+        
+        /* section 4: team (expanded from index) */
+        .team-section {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        .team-header {
+            text-align: center;
+            max-width: 48rem;
+            margin: 0 auto 3.5rem;
+        }
+        .team-header h2 {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .team-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(85,107,47,0.2);
+            transition: transform 0.2s;
+        }
+        .team-card:hover {
+            transform: scale(1.02);
+            border-color: var(--olive);
+        }
+        .team-img {
+            width: 8rem;
+            height: 8rem;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--olive);
+            background-size: cover;
+            background-position: center;
+        }
+        .team-name {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+        .team-role {
+            color: var(--olive);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .team-bio {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .team-social a {
+            color: var(--olive);
+            transition: 0.2s;
+        }
+        .team-social a:hover {
+            color: var(--soil);
+        }
+        
+        /* section 5: sustainability */
+        .sustainability-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+        .sustainability-grid {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+        @media (min-width: 1024px) {
+            .sustainability-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .sustainability-image {
+            border-radius: 2rem;
+            overflow: hidden;
+            min-height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            border: 4px solid rgba(85,107,47,0.3);
+            order: 1;
+        }
+        .sustainability-content {
+            order: 2;
+        }
+        @media (min-width: 1024px) {
+            .sustainability-image {
+                order: 2;
+            }
+            .sustainability-content {
+                order: 1;
+            }
+        }
+        .sustainability-badge {
+            display: inline-block;
+            background-color: var(--soil);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .sustainability-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .sustainability-features {
+            margin-top: 2rem;
+        }
+        .sustainability-feature {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .sustainability-feature i {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(85,107,47,0.1);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--olive);
+            font-size: 1.25rem;
+        }
+        
+        /* footer (same as index) */
+        .footer {
+            background-color: var(--deep);
+            color: white;
+            padding: 4rem 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .footer-logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--olive);
+        }
+        .footer-logo-icon i {
+            color: var(--olive);
+            font-size: 2rem;
+        }
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-text span {
+            color: var(--olive);
+        }
+        .footer-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--olive);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #9ca3af;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--olive);
+        }
+        .footer-input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            margin-bottom: 0.5rem;
+            border: none;
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--olive);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .footer-btn:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        #scroll-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--olive);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 100;
+            display: none;
+        }
+        #scroll-top:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.7s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        [style*="background-image"] {
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (identical to index) -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+            <div>
+                <div class="logo-text">Groww Urban</div>
+                <span class="logo-tagline">concrete harvest</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <div class="dropdown" id="dashboard-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href=" client.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> client</a>
+                    <a href=" admin.html" class="dropdown-item"><i class="fas fa-user-shield mr-2"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login/Register</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu overlay -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+            <div>
+                <div class="logo-text">GrowwUrban</div>
+                <span class="logo-tagline">concrete harvest</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <!-- Home Dropdown - using unique ID -->
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                    <span><i class="fas fa-home"></i> Home </span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="home-mobile" class="mobile-dropdown-content">
+                    <a href="index.html"> Home 1</a>
+                    <a href="home2.html"> Home 2</a>
+                </div>
+            </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="services.html" class="mobile-menu-item"><i class="fas fa-seedling"></i> Services</a>
+        <a href="blog.html" class="mobile-menu-item"><i class="fas fa-blog"></i> Blog</a>
+        <a href="pricing.html" class="mobile-menu-item"><i class="fas fa-tag"></i> Pricing</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> FAQ</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <!-- Dashboard Dropdown - using unique ID -->
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')">
+                <span><i class="fas fa-chart-pie"></i> Dashboard</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="dashboard-mobile" class="mobile-dropdown-content">
+                 <a href=" client.html"> client</a>
+                <a href=" admin.html"></i> Admin</a>
+            </div>
+        </div>
+        
+        <!-- separator before the three buttons (Logout, RTL, Theme) -->
+        <div class="mobile-separator"></div>
+        
+        <!-- exactly three buttons: Logout, RTL, Theme (no extra text, just like image) -->
+        <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> login/register</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <div class="page-header-pattern"></div>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size:0.75rem; align-self:center;"></i> <span>About Us</span>
+        </div>
+        <h1 class="page-title">Growing <span>communities</span><br>from the ground up</h1>
+        <p class="page-subtitle">We're on a mission to transform concrete jungles into edible landscapes, one balcony at a time.</p>
+    </div>
+</section>
+
+<!-- SECTION 1: OUR STORY -->
+<section class="story-section">
+    <div class="container">
+        <div class="story-grid">
+            <div class="fade-in-up">
+                <span class="story-badge">🌱 since 2020</span>
+                <h2 class="story-title">From a rooftop dream to a urban farming movement</h2>
+                <p class="story-text">Groww Urban started on a tiny Brooklyn rooftop with just 20 square feet of growing space and a big idea: what if everyone could grow their own food, no matter where they lived?</p>
+                <p class="story-text">Four years later, we've helped launch over 450 urban farms across 12 cities, proving that you don't need acres of land to grow fresh, healthy food. Our founder, Maya Chen, started with a single tomato plant that produced enough for her whole building – and the neighbors took notice.</p>
+                <div class="story-stats">
+                    <div class="story-stat">
+                        <div class="story-stat-number">2020</div>
+                        <div>founded</div>
+                    </div>
+                    <div class="story-stat">
+                        <div class="story-stat-number">12</div>
+                        <div>cities</div>
+                    </div>
+                    <div class="story-stat">
+                        <div class="story-stat-number">4.8k</div>
+                        <div>members</div>
+                    </div>
+                </div>
+            </div>
+            <div class="story-image"></div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2: MISSION & VALUES -->
+<section class="mission-section">
+    <div class="container">
+        <div class="mission-header">
+            <span style="color: var(--olive); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">what we believe</span>
+            <h2 class="mission-title">Our mission & values</h2>
+            <p style="opacity: 0.8; font-size: 1.125rem;">Every seed planted is a step toward a greener, healthier city.</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h3 class="value-title">Community First</h3>
+                <p class="value-text">We believe food brings people together. Every kit supports local growing communities.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                <h3 class="value-title">Sustainability</h3>
+                <p class="value-text">Zero-waste packaging, organic seeds, and water-efficient systems in every kit.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3 class="value-title">Education</h3>
+                <p class="value-text">We don't just sell kits – we teach you how to become a confident urban farmer.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-seedling"></i></div>
+                <h3 class="value-title">Accessibility</h3>
+                <p class="value-text">Fresh food should be for everyone. Our systems work in any space, any budget.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: IMPACT NUMBERS -->
+<section class="impact-section">
+    <div class="impact-pattern"></div>
+    <div class="container">
+        <div class="impact-header">
+            <span style="color: var(--olive); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">our impact</span>
+            <h2>Growing stronger every day</h2>
+            <p>The numbers behind the movement</p>
+        </div>
+        <div class="impact-grid">
+            <div class="impact-item">
+                <div class="impact-number">450+</div>
+                <div class="impact-label">Urban Farms</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number">12k</div>
+                <div class="impact-label">Weekly Harvests</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number">8</div>
+                <div class="impact-label">Cities Nationwide</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number">15k</div>
+                <div class="impact-label">Workshop Graduates</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number">5k</div>
+                <div class="impact-label">Pounds of Food</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number">100%</div>
+                <div class="impact-label">Organic Seeds</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number">95%</div>
+                <div class="impact-label">Success Rate</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number">24/7</div>
+                <div class="impact-label">Community Support</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 4: MEET THE TEAM (expanded) -->
+<section class="team-section">
+    <div class="container">
+        <div class="team-header">
+            <span style="color: var(--olive); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">the growers</span>
+            <h2>Meet the team behind the harvest</h2>
+            <p style="opacity: 0.8; font-size: 1.125rem;">Botanists, educators, and urban farmers dedicated to your success.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('/images/c1.jpg');"></div>
+                <h3 class="team-name">Maya Chen</h3>
+                <p class="team-role">Founder & Lead Grower</p>
+                <p class="team-bio">Former botanist turned urban farmer. Maya started Groww Urban on her rooftop in 2020.</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('/images/c2.jpg');"></div>
+                <h3 class="team-name">Omar Hassan</h3>
+                <p class="team-role">Hydroponics Specialist</p>
+                <p class="team-bio">Engineer with a passion for soil-free growing. Omar designs our hydroponic systems.</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('/images/c3.jpg');"></div>
+                <h3 class="team-name">Lea Velez</h3>
+                <p class="team-role">Soil Scientist</p>
+                <p class="team-bio">Soil health expert ensuring our organic mixes are nutrient-rich and sustainable.</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('/images/g1.jpg');"></div>
+                <h3 class="team-name">James Park</h3>
+                <p class="team-role">Workshop Lead</p>
+                <p class="team-bio">Educator and community organizer. James runs our weekend growing workshops.</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('/images/c4.jpg');"></div>
+                <h3 class="team-name">Priya Sharma</h3>
+                <p class="team-role">Community Manager</p>
+                <p class="team-bio">Connecting our growers, organizing meetups, and sharing success stories.</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('/images/g2.jpg');"></div>
+                <h3 class="team-name">Carlos Mendez</h3>
+                <p class="team-role">Product Designer</p>
+                <p class="team-bio">Designer creating beautiful, functional planters that fit any urban space.</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('/images/c5.jpg');"></div>
+                <h3 class="team-name">Sarah Okonkwo</h3>
+                <p class="team-role">Seed Librarian</p>
+                <p class="team-bio">Curating our heirloom seed collection and preserving rare varieties.</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('/images/g4.jpg');"></div>
+                <h3 class="team-name">David Kim</h3>
+                <p class="team-role">Operations Lead</p>
+                <p class="team-bio">Making sure every kit arrives on time, with everything you need.</p>
+                <div class="team-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 5: SUSTAINABILITY COMMITMENT -->
+<section class="sustainability-section">
+    <div class="container">
+        <div class="sustainability-grid">
+            <div class="sustainability-content fade-in-up">
+                <span class="sustainability-badge">🌍 planet first</span>
+                <h2 class="sustainability-title">Our commitment to sustainability</h2>
+                <p class="story-text">We don't just help you grow food – we ensure every part of our process respects the planet. From compostable packaging to water-saving systems, sustainability is at our core.</p>
+                <div class="sustainability-features">
+                    <div class="sustainability-feature">
+                        <i class="fas fa-recycle"></i>
+                        <div><strong>100% plastic-free packaging</strong> – all materials are compostable or reusable.</div>
+                    </div>
+                    <div class="sustainability-feature">
+                        <i class="fas fa-tint"></i>
+                        <div><strong>Water-efficient systems</strong> – our kits use 80% less water than traditional gardening.</div>
+                    </div>
+                    <div class="sustainability-feature">
+                        <i class="fas fa-tree"></i>
+                        <div><strong>1% for the planet</strong> – we donate 1% of sales to urban greening initiatives.</div>
+                    </div>
+                    <div class="sustainability-feature">
+                        <i class="fas fa-solar-panel"></i>
+                        <div><strong>Solar-powered warehouse</strong> – our entire operation runs on renewable energy.</div>
+                    </div>
+                </div>
+                <a href="#" class="btn-primary" style="display: inline-block; margin-top: 1.5rem; background-color: var(--soil);">Read our sustainability report</a>
+            </div>
+            <div class="sustainability-image"></div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER (same as index) -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <div class="footer-logo-icon"><i class="fas fa-seedling"></i></div>
+                    <div>
+                        <div class="footer-logo-text">Groww Urban</div>
+                        <span class="footer-tagline">concrete harvest</span>
+                    </div>
+                </div>
+               <p style="color:#9ca3af;">growing food, community & future
+                    At GrowwUrban, we believe in transforming rooftops, balconies, and small spaces into thriving green ecosystems..</p>
+            </div>
+            <div><h3 class="footer-heading">Quick links</h3><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="blog.html">Blog</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+           <div>
+    <h3 class="footer-heading">Support</h3>
+    <ul class="footer-links">
+        <li><a href="faq.html">Help Center</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Order Tracking</a></li>
+        <li><a href="#">Return Policy</a></li>
+    </ul>
+</div>
+            <div><h3 class="footer-heading">Stay grounded </h3><form><input type="email" placeholder="email" class="footer-input"><button class="footer-btn">subscribe</button></form></div>
+        </div>
+        <div class="copyright">© 2026 Groww Urban – concrete harvest.</div>
+    </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    // theme / rtl / dropdown logic (identical to index)
+    const htmlEl = document.documentElement;
+    const desktopTheme = document.getElementById('desktop-theme-toggle');
+    const mobileTheme = document.getElementById('mobile-theme-toggle');
+    const desktopIcon = document.getElementById('desktop-theme-icon');
+    const mobileIcon = document.getElementById('mobile-theme-icon');
+    const desktopRtl = document.getElementById('desktop-rtl-toggle');
+    const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+    let theme = localStorage.getItem('theme') || 'light';
+    htmlEl.setAttribute('data-theme', theme);
+    if (theme === 'dark') { htmlEl.classList.add('dark'); if(desktopIcon) desktopIcon.className = 'fas fa-sun'; if(mobileIcon) mobileIcon.className = 'fas fa-sun'; }
+
+    function toggleTheme() {
+        let isDark = htmlEl.getAttribute('data-theme') === 'dark';
+        let newTheme = isDark ? 'light' : 'dark';
+        htmlEl.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme);
+        if (newTheme === 'dark') htmlEl.classList.add('dark'); else htmlEl.classList.remove('dark');
+        if (desktopIcon) desktopIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+        if (mobileIcon) mobileIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+    }
+    if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+    if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+    function toggleRtl() { let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'; htmlEl.setAttribute('dir', dir); localStorage.setItem('direction', dir); }
+    if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+    if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+    function toggleDesktopDropdown(id) {
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+        document.getElementById(id).classList.toggle('active');
+    }
+    window.toggleDesktopDropdown = toggleDesktopDropdown;
+
+    function toggleMobileDropdown(id) {
+        document.getElementById(id).classList.toggle('active');
+    }
+    window.toggleMobileDropdown = toggleMobileDropdown;
+
+    // mobile menu open/close
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('close-mobile-menu');
+
+    if(menuBtn) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.add('active');
+        });
+    }
+    if(closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.remove('active');
+        });
+    }
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            mobileMenu.classList.remove('active');
+        }
+    });
+
+    // scroll top
+    const scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) scrollBtn.style.display = 'block';
+        else scrollBtn.style.display = 'none';
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+    });
+</script>
+</body>
+</html>

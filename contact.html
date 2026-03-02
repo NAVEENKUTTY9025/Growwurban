@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Groww Urban – get in touch with our urban farming collective.">
+    <title>Contact | Groww Urban</title>
+     <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & VARIABLES (same as index) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #FAFAFA;        /* smoke */
+            --bg-secondary: #f0f0e8;       /* soft warm off-white */
+            --text-main: #111111;           /* deep */
+            --text-heading: #111111;
+            --card-bg: #ffffff;
+            --border-light: #ddddd5;
+            --accent-green: #556B2F;        /* olive */
+            --accent-brown: #6D4C41;         /* soil */
+            --navbar-bg: #111111;            /* deep black */
+
+            --olive: #556B2F;
+            --soil: #6D4C41;
+            --deep: #111111;
+            --smoke: #FAFAFA;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #111111;
+            --bg-secondary: #1e1e1e;
+            --text-main: #EAEAEA;
+            --text-heading: #FAFAFA;
+            --card-bg: #222222;
+            --border-light: #3a3a3a;
+            --accent-green: #6b8c3e;
+            --accent-brown: #8b6b5a;
+            --navbar-bg: #000000;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            text-decoration: none;
+        }
+        /* container */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* navbar (exact copy from index) */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid #2f2f2f;
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--olive);
+            overflow: hidden;
+        }
+        .logo-icon i {
+            color: var(--olive);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--olive);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        /* desktop nav */
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-link {
+            color: #e0e0e0;
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #FAFAFA;
+            background-color: #2a2a2a;
+            border-radius: 30px;
+        }
+        .nav-link.active {
+            color: #FAFAFA;
+            font-weight: 600;
+            background: var(--olive);
+            border-radius: 30px;
+        }
+        /* dropdown */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #ccc;
+            transition: 0.2s;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .dropdown-item:hover {
+            background-color: var(--olive);
+            color: #fff;
+            padding-left: 28px;
+            border-radius: 12px;
+        }
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: 0.2s;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        /* desktop right icons */
+        .navbar-right-desktop {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .icon-btn:hover {
+            background-color: var(--olive);
+            color: var(--deep);
+        }
+        .login-btn {
+            background-color: var(--olive);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .login-btn:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        /* mobile menu button */
+        .mobile-menu-btn {
+            display: flex;
+            color: white;
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        /* mobile menu overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--deep);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .mobile-menu-close {
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .mobile-menu-items {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a2a2a;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .mobile-menu-item i {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-menu-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-dropdown {
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        .mobile-dropdown-btn i:first-child {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-dropdown-btn .fa-chevron-down {
+            color: var(--olive);
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #1a1a1a;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+        }
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+            padding: 0.75rem 0;
+        }
+        .mobile-dropdown-content a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: #ccc;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        .mobile-dropdown-content a:hover {
+            background-color: var(--olive);
+            color: white;
+        }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a2a2a;
+            transition: 0.2s;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .mobile-action-item i {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-action-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-separator {
+            margin: 1rem 0 0.5rem 0;
+            border-top: 2px solid #2f2f2f;
+        }
+        
+        /* ----- CONTACT PAGE SPECIFIC STYLES ----- */
+        .page-header {
+            background-color: var(--deep);
+            padding: 8rem 0 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22 width=%2240%22 height=%2240%22><path fill=%22%23556B2F%22 d=%22M0 0 L40 40 M40 0 L0 40%22 stroke-width=%221%22 stroke=%22%236D4C41%22 opacity=%220.4%22 /></svg>');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .page-subtitle {
+            color: var(--olive);
+            text-align: center;
+            font-size: 1.25rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-grid {
+            display: grid;
+            gap: 3rem;
+            padding: 5rem 0;
+        }
+        @media (min-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1.5fr;
+            }
+        }
+        
+        /* contact info cards */
+        .info-card {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-light);
+            transition: 0.2s;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--olive);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+        }
+        .info-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: rgba(85,107,47,0.1);
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--olive);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .info-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .info-text {
+            color: var(--text-main);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        .info-text a {
+            color: var(--olive);
+            transition: 0.2s;
+        }
+        .info-text a:hover {
+            text-decoration: underline;
+        }
+        
+        /* social links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .social-link {
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--bg-secondary);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--olive);
+            font-size: 1.25rem;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+        .social-link:hover {
+            background-color: var(--olive);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* contact form */
+        .contact-form {
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .form-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-heading);
+        }
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--border-light);
+            border-radius: 1rem;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            transition: 0.2s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--olive);
+            box-shadow: 0 0 0 3px rgba(85,107,47,0.2);
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 140px;
+        }
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-check input {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: var(--olive);
+        }
+        .btn-submit {
+            background-color: var(--olive);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        .btn-submit:hover {
+            background-color: var(--deep);
+        }
+        
+        /* map section */
+        .map-section {
+            background-color: var(--bg-secondary);
+            padding: 5rem 0;
+        }
+        .map-container {
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 4px solid var(--olive);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .map-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(85,107,47,0.2), rgba(0,0,0,0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .map-marker {
+            background-color: var(--olive);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        
+        /* hours card */
+        .hours-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--border-light);
+        }
+        .hours-day {
+            font-weight: 500;
+        }
+        .hours-time {
+            color: var(--olive);
+            font-weight: 700;
+        }
+        
+        /* footer (same as index) */
+        .footer {
+            background-color: var(--deep);
+            color: white;
+            padding: 4rem 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .footer-logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--olive);
+        }
+        .footer-logo-icon i {
+            color: var(--olive);
+            font-size: 2rem;
+        }
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-text span {
+            color: var(--olive);
+        }
+        .footer-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--olive);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #9ca3af;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--olive);
+        }
+        .footer-input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            margin-bottom: 0.5rem;
+            border: none;
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--olive);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .footer-btn:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        #scroll-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--olive);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 100;
+            display: none;
+        }
+        #scroll-top:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.7s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (exact copy from index) -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+            <div>
+                <div class="logo-text">Groww Urban</div>
+                <span class="logo-tagline">concrete harvest</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
+            <div class="dropdown" id="dashboard-dropdown">
+                <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                <div class="dropdown-menu">
+                    <a href=" client.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> client</a>
+                    <a href=" admin.html" class="dropdown-item"><i class="fas fa-user-shield mr-2"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login/Register</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu overlay (exact copy from index) -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+            <div>
+                <div class="logo-text">GrowwUrban</div>
+                <span class="logo-tagline">concrete harvest</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <!-- Home Dropdown - using unique ID -->
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                    <span><i class="fas fa-home"></i> Home </span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="home-mobile" class="mobile-dropdown-content">
+                    <a href="index.html"> Home 1</a>
+                    <a href="home2.html"> Home 2</a>
+                </div>
+            </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="services.html" class="mobile-menu-item"><i class="fas fa-seedling"></i> Services</a>
+        <a href="blog.html" class="mobile-menu-item"><i class="fas fa-blog"></i> Blog</a>
+        <a href="pricing.html" class="mobile-menu-item"><i class="fas fa-tag"></i> Pricing</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> FAQ</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <!-- Dashboard Dropdown - using unique ID -->
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')">
+                <span><i class="fas fa-chart-pie"></i> Dashboard</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="dashboard-mobile" class="mobile-dropdown-content">
+                 <a href=" client.html"> client</a>
+                <a href=" admin.html"></i> Admin</a>
+            </div>
+        </div>
+        
+        <!-- separator before the three buttons (Logout, RTL, Theme) -->
+        <div class="mobile-separator"></div>
+        
+        <!-- exactly three buttons: Logout, RTL, Theme (no extra text, just like image) -->
+        <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> login/register</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title fade-in-up">get in touch</h1>
+        <p class="page-subtitle fade-in-up">we'd love to hear from you</p>
+    </div>
+</section>
+
+<!-- CONTACT MAIN SECTION -->
+<section style="background-color: var(--bg-primary);">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- LEFT: CONTACT INFO -->
+            <div class="fade-in-up">
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-map-pin"></i></div>
+                    <h2 class="info-title">visit our farm</h2>
+                    <p class="info-text">125 Rooftop Lane<br>Brooklyn, NY 11201<br>Urban Agriculture District</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-clock"></i></div>
+                    <h2 class="info-title">farm stand hours</h2>
+                    <div class="hours-grid">
+                        <div class="hours-row"><span class="hours-day">Monday - Friday</span><span class="hours-time">9am - 6pm</span></div>
+                        <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10am - 5pm</span></div>
+                        <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">12pm - 4pm</span></div>
+                        <div class="hours-row"><span class="hours-day">Workshop days</span><span class="hours-time">until 8pm</span></div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                    <h2 class="info-title">call or text</h2>
+                    <p class="info-text">
+                        <a href="tel:+12125551234">+1 (212) 555-1234</a><br>
+                        <a href="mailto:hello@growwurban.com">hello@growwurban.com</a>
+                    </p>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; opacity: 0.7;">🌱 we reply within 24h</p>
+                </div>
+            </div>
+            
+            <!-- RIGHT: CONTACT FORM -->
+            <div class="fade-in-up">
+                <div class="contact-form">
+                    <h2 class="form-title">send us a note</h2>
+                    <form id="contactForm" onsubmit="event.preventDefault(); alert('Thank you for reaching out! We\'ll get back to you soon.');">
+                        <div class="form-group">
+                            <label class="form-label" for="name">full name *</label>
+                            <input type="text" class="form-control" id="name" required placeholder="e.g., Maya Chen">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="email">email address *</label>
+                            <input type="email" class="form-control" id="email" required placeholder="you@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="phone">phone (optional)</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="+1 212 555 1234">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="subject">subject *</label>
+                            <select class="form-control" id="subject" required>
+                                <option value="" disabled selected>select an option</option>
+                                <option value="workshop">workshop inquiry</option>
+                                <option value="kits">urban farming kits</option>
+                                <option value="wholesale">wholesale / partnership</option>
+                                <option value="visit">farm visit / tour</option>
+                                <option value="other">other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">message *</label>
+                            <textarea class="form-control" id="message" required placeholder="tell us about your urban farming journey..."></textarea>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="newsletter" checked>
+                            <label for="newsletter" style="opacity: 0.9;">subscribe to monthly growing tips</label>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> send message
+                        </button><br>
+                        <p>
+                            Urban farming is more than just growing plants — it’s about creating sustainable, self-sufficient communities in the heart of the city. At GrowwUrban, we believe in transforming rooftops, balconies, and small spaces into thriving green ecosystems. From organic vegetables to eco-friendly gardening solutions, our mission is to empower urban dwellers to reconnect with nature and cultivate a healthier lifestyle, one plant at a time.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAP SECTION -->
+<section class="map-section">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span style="color: var(--olive); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">find us</span>
+            <h2 style="font-size: 2.5rem; margin-top: 0.5rem;">come harvest with us</h2>
+        </div>
+        <div class="map-container">
+            <div class="map-placeholder">
+                <div class="map-overlay">
+                    <div class="map-marker">
+                        <i class="fas fa-map-marker-alt"></i> Groww Urban Farm
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ SNIPPET (optional, but keeps consistency) -->
+<section style="background-color: var(--bg-primary); padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; max-width: 48rem; margin: 0 auto;">
+            <span style="color: var(--olive); font-weight: 700; text-transform: uppercase;">quick answers</span>
+            <h2 style="font-size: 2.5rem; margin: 1rem 0;">frequently asked</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: 48rem; margin: 3rem auto 0;">
+            <div style="background-color: var(--card-bg); border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--border-light);">
+                <h3 style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-seedling" style="color: var(--olive);"></i> Can I visit the farm?</h3>
+                <p style="opacity: 0.8; margin-top: 0.5rem;">Absolutely! We're open during farm stand hours and offer guided tours every Saturday at 11am.</p>
+            </div>
+            <div style="background-color: var(--card-bg); border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--border-light);">
+                <h3 style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-seedling" style="color: var(--olive);"></i> Do you host workshops for groups?</h3>
+                <p style="opacity: 0.8; margin-top: 0.5rem;">Yes! We offer private workshops for schools, teams, and community groups. Use the form to inquire.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="faq.html" class="btn-primary" style="background: var(--deep);">view all FAQ <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER (same as index) -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <div class="footer-logo-icon"><i class="fas fa-seedling"></i></div>
+                    <div>
+                        <div class="footer-logo-text">Groww Urban</div>
+                        <span class="footer-tagline">concrete harvest</span>
+                    </div>
+                </div>
+               <p style="color:#9ca3af;">growing food, community & future
+                    At GrowwUrban, we believe in transforming rooftops, balconies, and small spaces into thriving green ecosystems..</p>
+            </div>
+            <div><h3 class="footer-heading">Quick links</h3><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="blog.html">Blog</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+           <div>
+    <h3 class="footer-heading">Support</h3>
+    <ul class="footer-links">
+        <li><a href="faq.html">Help Center</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Order Tracking</a></li>
+        <li><a href="#">Return Policy</a></li>
+    </ul>
+</div>
+            <div><h3 class="footer-heading">Stay grounded </h3><form onsubmit="event.preventDefault(); alert('Thanks for subscribing!');"><input type="email" placeholder="email" class="footer-input"><button class="footer-btn">subscribe</button></form></div>
+        </div>
+        <div class="copyright">© 2026 Groww Urban – concrete harvest.</div>
+    </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    // theme / rtl / dropdown logic (exact copy from index)
+    const htmlEl = document.documentElement;
+    const desktopTheme = document.getElementById('desktop-theme-toggle');
+    const mobileTheme = document.getElementById('mobile-theme-toggle');
+    const desktopIcon = document.getElementById('desktop-theme-icon');
+    const mobileIcon = document.getElementById('mobile-theme-icon');
+    const desktopRtl = document.getElementById('desktop-rtl-toggle');
+    const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+    let theme = localStorage.getItem('theme') || 'light';
+    htmlEl.setAttribute('data-theme', theme);
+    if (theme === 'dark') { htmlEl.classList.add('dark'); if(desktopIcon) desktopIcon.className = 'fas fa-sun'; if(mobileIcon) mobileIcon.className = 'fas fa-sun'; }
+
+    function toggleTheme() {
+        let isDark = htmlEl.getAttribute('data-theme') === 'dark';
+        let newTheme = isDark ? 'light' : 'dark';
+        htmlEl.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme);
+        if (newTheme === 'dark') htmlEl.classList.add('dark'); else htmlEl.classList.remove('dark');
+        if (desktopIcon) desktopIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+        if (mobileIcon) mobileIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+    }
+    if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+    if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+    function toggleRtl() { let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'; htmlEl.setAttribute('dir', dir); localStorage.setItem('direction', dir); }
+    if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+    if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+    function toggleDesktopDropdown(id) {
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+        document.getElementById(id).classList.toggle('active');
+    }
+    window.toggleDesktopDropdown = toggleDesktopDropdown;
+
+    function toggleMobileDropdown(id) {
+        document.getElementById(id).classList.toggle('active');
+    }
+    window.toggleMobileDropdown = toggleMobileDropdown;
+
+    // mobile menu open/close
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('close-mobile-menu');
+
+    if(menuBtn) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.add('active');
+        });
+    }
+    if(closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.remove('active');
+        });
+    }
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            mobileMenu.classList.remove('active');
+        }
+    });
+
+    // scroll top
+    const scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) scrollBtn.style.display = 'block';
+        else scrollBtn.style.display = 'none';
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+    });
+</script>
+</body>
+</html>

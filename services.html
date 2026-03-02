@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Groww Urban – professional urban farming services: terrace setup, balcony consultation, hydroponics & maintenance.">
+    <title>Services | Groww Urban</title>
+     <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & VARIABLES (identical to index) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #FAFAFA;
+            --bg-secondary: #f0f0e8;
+            --text-main: #111111;
+            --text-heading: #111111;
+            --card-bg: #ffffff;
+            --border-light: #ddddd5;
+            --accent-green: #556B2F;
+            --accent-brown: #6D4C41;
+            --navbar-bg: #111111;
+            --olive: #556B2F;
+            --soil: #6D4C41;
+            --deep: #111111;
+            --smoke: #FAFAFA;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #111111;
+            --bg-secondary: #1e1e1e;
+            --text-main: #EAEAEA;
+            --text-heading: #FAFAFA;
+            --card-bg: #222222;
+            --border-light: #3a3a3a;
+            --accent-green: #6b8c3e;
+            --accent-brown: #8b6b5a;
+            --navbar-bg: #000000;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* ----- NAVBAR (identical to index, active state on Services) ----- */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid #2f2f2f;
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--olive);
+            overflow: hidden;
+        }
+        .logo-icon i {
+            color: var(--olive);
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .logo-text span {
+            color: var(--olive);
+        }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-link {
+            color: #e0e0e0;
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #FAFAFA;
+            background-color: #2a2a2a;
+            border-radius: 30px;
+        }
+        .nav-link.active {
+            color: #FAFAFA;
+            font-weight: 600;
+            background: var(--olive);
+            border-radius: 30px;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #ccc;
+            transition: 0.2s;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .dropdown-item:hover {
+            background-color: var(--olive);
+            color: #fff;
+            padding-left: 28px;
+            border-radius: 12px;
+        }
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: 0.2s;
+        }
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        .navbar-right-desktop {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .icon-btn:hover {
+            background-color: var(--olive);
+            color: var(--deep);
+        }
+        .login-btn {
+            background-color: var(--olive);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+        .login-btn:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: white;
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--deep);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .mobile-menu-close {
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .mobile-menu-items {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a2a2a;
+            transition: 0.2s;
+        }
+        .mobile-menu-item i {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-menu-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-dropdown {
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        .mobile-dropdown-btn i:first-child {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-dropdown-btn .fa-chevron-down {
+            color: var(--olive);
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #1a1a1a;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+        }
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+            padding: 0.75rem 0;
+        }
+        .mobile-dropdown-content a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: #ccc;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        .mobile-dropdown-content a:hover {
+            background-color: var(--olive);
+            color: white;
+        }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid #2a2a2a;
+            transition: 0.2s;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .mobile-action-item i {
+            color: var(--olive);
+            margin-right: 1rem;
+            width: 1.75rem;
+            font-size: 1.25rem;
+        }
+        .mobile-action-item:hover {
+            background-color: #1f1f1f;
+            padding-left: 0.5rem;
+        }
+        .mobile-separator {
+            margin: 1rem 0 0.5rem 0;
+            border-top: 2px solid #2f2f2f;
+        }
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+
+        /* ----- PAGE SPECIFIC STYLES (services) ----- */
+        .page-header {
+            background-color: var(--deep);
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22 width=%2240%22 height=%2240%22><path fill=%22%23556B2F%22 d=%22M0 0 L40 40 M40 0 L0 40%22 stroke-width=%221%22 stroke=%22%236D4C41%22 opacity=%220.4%22 /></svg>');
+        }
+        .page-header h1 {
+            font-size: 3.5rem;
+            color: white;
+            line-height: 1.2;
+        }
+        .page-header h1 span {
+            color: var(--olive);
+        }
+        .breadcrumb {
+            color: #aaa;
+            margin-top: 1rem;
+        }
+        .breadcrumb a {
+            color: var(--olive);
+        }
+
+        /* service card (main four) */
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            border: 1px solid rgba(85,107,47,0.2);
+            transition: transform 0.3s, border-color 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--olive);
+        }
+        .service-img {
+            height: 260px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .service-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: rgba(85,107,47,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--olive);
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+        }
+        .service-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+        .service-desc {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+        .service-features i {
+            color: var(--olive);
+            width: 1.25rem;
+        }
+        
+        /* BUTTON GROUP - now with two buttons */
+        .service-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: auto;
+            align-items: center;
+        }
+        .btn-service {
+            background-color: var(--soil);
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            flex: 1 1 auto;
+            justify-content: center;
+        }
+        .btn-service:hover {
+            background-color: var(--deep);
+        }
+        .btn-details {
+            background-color: transparent;
+            color: var(--olive);
+            border: 2px solid var(--olive);
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            cursor: pointer;
+            flex: 1 1 auto;
+            justify-content: center;
+        }
+        .btn-details:hover {
+            background-color: var(--olive);
+            color: white;
+        }
+
+        /* process / how it works */
+        .process-step {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--card-bg);
+            border-radius: 2rem;
+            border: 1px solid rgba(85,107,47,0.15);
+        }
+        .process-circle {
+            width: 5rem;
+            height: 5rem;
+            background-color: rgba(85,107,47,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            border: 2px solid var(--olive);
+            font-size: 2rem;
+            color: var(--olive);
+        }
+        .process-circle.soil {
+            background-color: var(--soil);
+            border-color: var(--soil);
+            color: white;
+        }
+
+        /* CTA banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--deep) 0%, #2a3a1e 100%);
+            border-radius: 3rem;
+            padding: 4rem 2rem;
+            color: white;
+            text-align: center;
+        }
+        .cta-banner h2 {
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        .cta-banner .btn-primary {
+            background: var(--olive);
+            font-size: 1.2rem;
+            padding: 1.25rem 3rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-radius: 9999px;
+            color: white;
+            font-weight: 700;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-banner .btn-primary:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+
+        /* badge */
+        .badge {
+            background-color: var(--olive);
+            color: white;
+            padding: 0.375rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* footer (identical) */
+        .footer {
+            background-color: var(--deep);
+            color: white;
+            padding: 4rem 0;
+            margin-top: 3rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .footer-logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--olive);
+        }
+        .footer-logo-icon i {
+            color: var(--olive);
+            font-size: 2rem;
+        }
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-text span {
+            color: var(--olive);
+        }
+        .footer-tagline {
+            font-size: 0.625rem;
+            color: #ccc;
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--olive);
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #9ca3af;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--olive);
+        }
+        .footer-input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            margin-bottom: 0.5rem;
+            border: none;
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--olive);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .footer-btn:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        #scroll-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--olive);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 100;
+            display: none;
+        }
+        #scroll-top:hover {
+            background-color: white;
+            color: var(--deep);
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.7s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        [style*="background-image"] {
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR (identical, with Services active) -->
+    <nav class="navbar-container">
+        <div class="container navbar-flex">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+                <div>
+                    <div class="logo-text">Groww Urban</div>
+                    <span class="logo-tagline">concrete harvest</span>
+                </div>
+            </a>
+            <div class="desktop-nav">
+                <div class="dropdown" id="home-dropdown">
+                    <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                    <div class="dropdown-menu">
+                        <a href="index.html" class="dropdown-item">Home 1</a>
+                        <a href="home2.html" class="dropdown-item">Home 2</a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="dropdown" id="dashboard-dropdown">
+                    <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></div>
+                    <div class="dropdown-menu">
+                        <a href=" client.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> client</a>
+                        <a href=" admin.html" class="dropdown-item"><i class="fas fa-user-shield mr-2"></i> Admin</a>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-right-desktop">
+                <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+                <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+                <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login/Register</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- mobile menu overlay (identical) -->
+   <div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+            <div>
+                <div class="logo-text">GrowwUrban</div>
+                <span class="logo-tagline">concrete harvest</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <!-- Home Dropdown - using unique ID -->
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                    <span><i class="fas fa-home"></i> Home </span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="home-mobile" class="mobile-dropdown-content">
+                    <a href="index.html"> Home 1</a>
+                    <a href="home2.html"> Home 2</a>
+                </div>
+            </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="services.html" class="mobile-menu-item"><i class="fas fa-seedling"></i> Services</a>
+        <a href="blog.html" class="mobile-menu-item"><i class="fas fa-blog"></i> Blog</a>
+        <a href="pricing.html" class="mobile-menu-item"><i class="fas fa-tag"></i> Pricing</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> FAQ</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <!-- Dashboard Dropdown - using unique ID -->
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')">
+                <span><i class="fas fa-chart-pie"></i> Dashboard</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="dashboard-mobile" class="mobile-dropdown-content">
+                 <a href=" client.html"> client</a>
+                <a href=" admin.html"></i> Admin</a>
+            </div>
+        </div>
+        
+        <!-- separator before the three buttons (Logout, RTL, Theme) -->
+        <div class="mobile-separator"></div>
+        
+        <!-- exactly three buttons: Logout, RTL, Theme (no extra text, just like image) -->
+        <button class="mobile-action-item" id="mobile-logout-btn" onclick="window.location.href='login.html'"><i class="fas fa-sign-out-alt"></i> login/register</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="page-header-pattern"></div>
+        <div class="container" style="position:relative; z-index:2;">
+            <h1 class="fade-in-up">our <span>services</span></h1>
+            <div class="breadcrumb"> <a href="index.html">Home</a> / Services </div>
+        </div>
+    </section>
+
+    <!-- INTRO TEXT -->
+    <section style="padding: 4rem 0 2rem; background-color: var(--bg-primary);">
+        <div class="container" style="max-width: 800px; text-align: center;">
+            <span class="badge" style="background: var(--olive); margin-bottom: 1rem;">what we offer</span>
+            <h2 style="font-size: 2.8rem; margin-bottom: 1.5rem;">turn your concrete into harvest</h2>
+            <p style="font-size: 1.2rem; opacity: 0.8;">From rooftop farms to balcony herb gardens – we design, install and maintain your green oasis.</p>
+        </div>
+    </section>
+
+    <!-- MAIN 4 SERVICE CARDS (with HD images and two buttons) -->
+    <section style="padding: 2rem 0 5rem; background-color: var(--bg-primary);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 2.5rem;">
+                <!-- 1. Terrace garden setup (HD) -->
+                <div class="service-card fade-in-up">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2069&auto=format&fit=crop');"></div>
+                    <div class="service-content">
+                        <div class="service-icon"><i class="fas fa-tree"></i></div>
+                        <h3 class="service-title">Terrace garden setup</h3>
+                        <p class="service-desc">Transform your empty rooftop into a lush, edible paradise. We handle structural assessment, raised beds, irrigation and plant selection.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Custom design for your space</li>
+                            <li><i class="fas fa-check-circle"></i> Lightweight soil & drainage layers</li>
+                            <li><i class="fas fa-check-circle"></i> Drip irrigation installation</li>
+                            <li><i class="fas fa-check-circle"></i> Perennial & seasonal planting</li>
+                        </ul>
+                        <div class="service-buttons">
+                            <a href="#" class="btn-service">from ₹12,500 <i class="fas fa-arrow-right"></i></a>
+                            <a href="service  details.html" class="btn-details"><i class="fas fa-info-circle"></i> details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Balcony farming consultation (HD) -->
+                <div class="service-card fade-in-up" style="animation-delay:0.1s;">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1604762524889-3e2fcc145683?q=80&w=2071&auto=format&fit=crop');"></div>
+                    <div class="service-content">
+                        <div class="service-icon"><i class="fas fa-leaf"></i></div>
+                        <h3 class="service-title">Balcony farming consultation</h3>
+                        <p class="service-desc">Make the most of your balcony – even if it's small or shady. We'll visit (or video call) and create a tailored growing plan.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> On‑site or virtual consultation</li>
+                            <li><i class="fas fa-check-circle"></i> Plant selection for light & wind</li>
+                            <li><i class="fas fa-check-circle"></i> Vertical gardening solutions</li>
+                            <li><i class="fas fa-check-circle"></i> Container & soil mix guide</li>
+                        </ul>
+                        <div class="service-buttons">
+                            <a href="#" class="btn-service">from ₹3,999 <i class="fas fa-arrow-right"></i></a>
+                            <a href="service  details.html" class="btn-details"><i class="fas fa-info-circle"></i> details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Hydroponic installation (HD) -->
+                <div class="service-card fade-in-up" style="animation-delay:0.2s;">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=2070&auto=format&fit=crop');"></div>
+                    <div class="service-content">
+                        <div class="service-icon"><i class="fas fa-water"></i></div>
+                        <h3 class="service-title">Hydroponic installation</h3>
+                        <p class="service-desc">Soil‑free, water‑efficient systems for maximum yield. Perfect for lettuce, herbs and strawberries – indoors or on a balcony.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> NFT / deep water culture setups</li>
+                            <li><i class="fas fa-check-circle"></i> Automated nutrient dosing</li>
+                            <li><i class="fas fa-check-circle"></i> LED grow light integration</li>
+                            <li><i class="fas fa-check-circle"></i> Training & handover</li>
+                        </ul>
+                        <div class="service-buttons">
+                            <a href="#" class="btn-service">from ₹22,000 <i class="fas fa-arrow-right"></i></a>
+                            <a href="service  details.html" class="btn-details"><i class="fas fa-info-circle"></i> details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Maintenance service (HD) -->
+                <div class="service-card fade-in-up" style="animation-delay:0.3s;">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1558904541-efa843a96f01?q=80&w=2070&auto=format&fit=crop');"></div>
+                    <div class="service-content">
+                        <div class="service-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3 class="service-title">Maintenance service</h3>
+                        <p class="service-desc">We keep your garden thriving with regular visits – pruning, fertilizing, pest control and replanting as seasons change.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Weekly / bi‑weekly visits</li>
+                            <li><i class="fas fa-check-circle"></i> Organic pest & disease management</li>
+                            <li><i class="fas fa-check-circle"></i> Soil health monitoring</li>
+                            <li><i class="fas fa-check-circle"></i> Seasonal crop rotation</li>
+                        </ul>
+                        <div class="service-buttons">
+                            <a href="#" class="btn-service">from ₹2,499/mo <i class="fas fa-arrow-right"></i></a>
+                            <a href="service  details.html" class="btn-details"><i class="fas fa-info-circle"></i> details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS (process) -->
+    <section style="background-color: var(--bg-secondary); padding: 5rem 0;">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:4rem;">
+                <h2 style="font-size:3rem;">our service flow</h2>
+                <p style="font-size:1.25rem; opacity:0.8;">from first chat to thriving greens</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto;">
+                <div class="process-step"><div class="process-circle"><i class="fas fa-comments"></i></div><h3>1. free consultation</h3><p>Tell us about your space and goals – we'll suggest the best service.</p></div>
+                <div class="process-step"><div class="process-circle"><i class="fas fa-ruler-combined"></i></div><h3>2. site visit & design</h3><p>We measure, assess light, and create a custom plan.</p></div>
+                <div class="process-step"><div class="process-circle soil"><i class="fas fa-trowel"></i></div><h3>3. installation</h3><p>Our team builds beds, sets up hydroponics, and plants.</p></div>
+                <div class="process-step"><div class="process-circle"><i class="fas fa-calendar-check"></i></div><h3>4. ongoing support</h3><p>Maintenance plans keep your garden productive year‑round.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section style="padding: 5rem 0; background: var(--bg-primary);">
+        <div class="container">
+            <div class="cta-banner">
+                <h2>ready to start your urban farm?</h2>
+                <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-alt"></i> book free consultation</a>
+                <p style="margin-top: 2rem; color: rgba(255,255,255,0.8);">or call us at <strong>+91 98765 43210</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (identical) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon"><i class="fas fa-seedling"></i></div>
+                        <div>
+                            <div class="footer-logo-text">Groww Urban</div>
+                            <span class="footer-tagline">concrete harvest</span>
+                        </div>
+                    </div>
+                   <p style="color:#9ca3af;">growing food, community & future
+                    At GrowwUrban, we believe in transforming rooftops, balconies, and small spaces into thriving green ecosystems..</p>
+                </div>
+                <div><h3 class="footer-heading">Quick links</h3><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="blog.html">Blog</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+               <div>
+    <h3 class="footer-heading">Support</h3>
+    <ul class="footer-links">
+        <li><a href="faq.html">Help Center</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Order Tracking</a></li>
+        <li><a href="#">Return Policy</a></li>
+    </ul>
+</div>
+                <div><h3 class="footer-heading">Stay grounded </h3><form><input type="email" placeholder="email" class="footer-input"><button class="footer-btn">subscribe</button></form></div>
+            </div>
+            <div class="copyright">© 2026 Groww Urban – concrete harvest.</div>
+        </div>
+    </footer>
+
+    <button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // identical theme / rtl / dropdown / mobile logic (copied from index)
+        const htmlEl = document.documentElement;
+        const desktopTheme = document.getElementById('desktop-theme-toggle');
+        const mobileTheme = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        let theme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', theme);
+        if (theme === 'dark') { htmlEl.classList.add('dark'); if(desktopIcon) desktopIcon.className = 'fas fa-sun'; if(mobileIcon) mobileIcon.className = 'fas fa-sun'; }
+
+        function toggleTheme() {
+            let isDark = htmlEl.getAttribute('data-theme') === 'dark';
+            let newTheme = isDark ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme);
+            if (newTheme === 'dark') htmlEl.classList.add('dark'); else htmlEl.classList.remove('dark');
+            if (desktopIcon) desktopIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+            if (mobileIcon) mobileIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+        }
+        if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+        if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+        function toggleRtl() { let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'; htmlEl.setAttribute('dir', dir); localStorage.setItem('direction', dir); }
+        if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id)?.classList.toggle('active');
+        }
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id)?.classList.toggle('active');
+        }
+
+        // mobile menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if(menuBtn) menuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.add('active'); });
+        if(closeBtn) closeBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.remove('active'); });
+        mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) mobileMenu.classList.remove('active'); });
+
+        // scroll top
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) scrollBtn.style.display = 'block';
+            else scrollBtn.style.display = 'none';
+        });
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
