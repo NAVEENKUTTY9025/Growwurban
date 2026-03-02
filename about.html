@@ -81,6 +81,7 @@
             align-items: center;
             justify-content: space-between;
         }
+        
         .logo {
             display: flex;
             align-items: center;
@@ -1048,47 +1049,85 @@
 </section>
 
 <!-- SECTION 3: IMPACT NUMBERS -->
-<section class="impact-section">
-    <div class="impact-pattern"></div>
-    <div class="container">
-        <div class="impact-header">
-            <span style="color: var(--olive); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">our impact</span>
-            <h2>Growing stronger every day</h2>
-            <p>The numbers behind the movement</p>
+<section style="padding:60px 20px; background:#111111;">
+
+    <style>
+        .impact-grid-custom {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Laptop = 4 columns */
+            gap: 25px;
+        }
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .impact-grid-custom {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .impact-grid-custom {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <div style="max-width:1200px; margin:0 auto; text-align:center;">
+
+        <div style="margin-bottom:40px;">
+            <span style="color:#556B2F; font-weight:700; letter-spacing:1px; text-transform:uppercase;">
+                Our Impact
+            </span>
+            <h2 style="color:#ffffff; font-size:2.2rem; margin:10px 0;">
+                Growing stronger every day
+            </h2>
+            <p style="color:#cccccc;">The numbers behind the movement</p>
         </div>
-        <div class="impact-grid">
-            <div class="impact-item">
-                <div class="impact-number">450+</div>
-                <div class="impact-label">Urban Farms</div>
+
+        <div class="impact-grid-custom">
+
+            <!-- Repeat This Box -->
+            <div style="background:#1a1a1a; padding:30px 20px; border-radius:20px;">
+                <div style="font-size:2.5rem; font-weight:700; color:#556B2F;">450+</div>
+                <div style="color:#ffffff; margin-top:10px;">Urban Farms</div>
             </div>
-            <div class="impact-item">
-                <div class="impact-number">12k</div>
-                <div class="impact-label">Weekly Harvests</div>
+
+            <div style="background:#1a1a1a; padding:30px 20px; border-radius:20px;">
+                <div style="font-size:2.5rem; font-weight:700; color:#556B2F;">12k</div>
+                <div style="color:#ffffff; margin-top:10px;">Weekly Harvests</div>
             </div>
-            <div class="impact-item">
-                <div class="impact-number">8</div>
-                <div class="impact-label">Cities Nationwide</div>
+
+            <div style="background:#1a1a1a; padding:30px 20px; border-radius:20px;">
+                <div style="font-size:2.5rem; font-weight:700; color:#556B2F;">8</div>
+                <div style="color:#ffffff; margin-top:10px;">Cities Nationwide</div>
             </div>
-            <div class="impact-item">
-                <div class="impact-number">15k</div>
-                <div class="impact-label">Workshop Graduates</div>
+
+            <div style="background:#1a1a1a; padding:30px 20px; border-radius:20px;">
+                <div style="font-size:2.5rem; font-weight:700; color:#556B2F;">15k</div>
+                <div style="color:#ffffff; margin-top:10px;">Workshop Graduates</div>
             </div>
-            <div class="impact-item">
-                <div class="impact-number">5k</div>
-                <div class="impact-label">Pounds of Food</div>
+
+            <div style="background:#1a1a1a; padding:30px 20px; border-radius:20px;">
+                <div style="font-size:2.5rem; font-weight:700; color:#556B2F;">5k</div>
+                <div style="color:#ffffff; margin-top:10px;">Pounds of Food</div>
             </div>
-            <div class="impact-item">
-                <div class="impact-number">100%</div>
-                <div class="impact-label">Organic Seeds</div>
+
+            <div style="background:#1a1a1a; padding:30px 20px; border-radius:20px;">
+                <div style="font-size:2.5rem; font-weight:700; color:#556B2F;">100%</div>
+                <div style="color:#ffffff; margin-top:10px;">Organic Seeds</div>
             </div>
-            <div class="impact-item">
-                <div class="impact-number">95%</div>
-                <div class="impact-label">Success Rate</div>
+
+            <div style="background:#1a1a1a; padding:30px 20px; border-radius:20px;">
+                <div style="font-size:2.5rem; font-weight:700; color:#556B2F;">95%</div>
+                <div style="color:#ffffff; margin-top:10px;">Success Rate</div>
             </div>
-            <div class="impact-item">
-                <div class="impact-number">24/7</div>
-                <div class="impact-label">Community Support</div>
+
+            <div style="background:#1a1a1a; padding:30px 20px; border-radius:20px;">
+                <div style="font-size:2.5rem; font-weight:700; color:#556B2F;">24/7</div>
+                <div style="color:#ffffff; margin-top:10px;">Community Support</div>
             </div>
+
         </div>
     </div>
 </section>
@@ -1176,7 +1215,7 @@
                 <div class="team-img" style="background-image:url('/images/g4.jpg');"></div>
                 <h3 class="team-name">David Kim</h3>
                 <p class="team-role">Operations Lead</p>
-                <p class="team-bio">Making sure every kit arrives on time, with everything you need.</p>
+                <p class="team-bio">Making sure every kit arrives on time, with everything you <br> need.</p>
                 <div class="team-social">
                     <a href="#"><i class="fab fa-linkedin"></i></a>
                     <a href="#"><i class="fab fa-github"></i></a>
@@ -1212,7 +1251,7 @@
                         <div><strong>Solar-powered warehouse</strong> – our entire operation runs on renewable energy.</div>
                     </div>
                 </div>
-                <a href="#" class="btn-primary" style="display: inline-block; margin-top: 1.5rem; background-color: var(--soil);">Read our sustainability report</a>
+                 <span class="story-badge">Read our sustainability report</span>
             </div>
             <div class="sustainability-image"></div>
         </div>
