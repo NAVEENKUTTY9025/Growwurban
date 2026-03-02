@@ -471,17 +471,23 @@
             display: block;
         }
         .hero-image {
-            border-radius: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-            border: 4px solid rgba(85,107,47,0.3);
-            min-height: 400px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-image: url('https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=2070&auto=format&fit=crop');
-            width: 100%;
-        }
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    border: 4px solid rgba(85,107,47,0.3);
+    min-height: 400px;
+    width: 100%;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
         .order-1 { order: 1; }
         .order-2 { order: 2; }
         @media (min-width: 1024px) {
@@ -1008,7 +1014,7 @@
     <div class="mobile-menu-items">
         <!-- Home Dropdown - using unique ID -->
             <div class="mobile-dropdown">
-                <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <button class="nav-link active"class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
                     <span><i class="fas fa-home"></i> Home </span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
@@ -1066,8 +1072,12 @@
                     <div><span class="stat-number">12k</span> <span class="stat-label">weekly harvests</span></div>
                 </div>
             </div>
-            <div class="hero-image order-1 lg:order-2"></div>
-        </div>
+<div class="hero-image order-1 lg:order-2">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="images/Urban video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>        </div>
     </div>
 </section>
 
