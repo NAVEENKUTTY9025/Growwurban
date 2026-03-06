@@ -1148,22 +1148,60 @@
 </section>
 
 <!-- TEAM -->
-<section class="team-section">
-    <div class="container">
-        <div class="team-flex">
-            <div class="team-content">
+<section class="team-section" style="padding:60px 0; background:#fff;">
+    <div class="container" style="width:90%; margin:auto;">
+        <div class="team-flex" style="display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+
+            <div class="team-content" style="flex:1; min-width:250px;">
                 <h2 style="font-size:3rem; margin-bottom:1rem;">farmers & botanists</h2>
-                <p style="font-size:1.125rem;">real people who tend our rooftop gardens and design your kits.</p><br>
-                 <button class="newsletter-btn">Meet all →</button>
+                <p style="font-size:1.125rem;">real people who tend our rooftop gardens and design your kits.</p>
+                <br>
+                <button class="newsletter-btn" style="padding:10px 20px; background:#556B2F; color:#fff; border:none; cursor:pointer;">
+                    Meet all →
+                </button>
             </div>
-            <div class="team-grid">
-                <div class="team-card"><div class="team-img" style="background-image:url('/images/c1.jpg');"></div><h3 class="team-name">Maya Chen</h3><p class="team-role">lead grower</p></div>
-                <div class="team-card"><div class="team-img" style="background-image:url('/images/g4.jpg');"></div><h3 class="team-name">Omar Hassan</h3><p class="team-role">hydroponics</p></div>
-                <div class="team-card"><div class="team-img" style="background-image:url('/images/c5.jpg');"></div><h3 class="team-name">Lea Velez</h3><p class="team-role">soil scientist</p></div>
+
+            <div class="team-grid" 
+            style="flex:1.5; display:grid; grid-template-columns:repeat(4,1fr); gap:15px;" 
+            id="teamGrid">
+
+                <div class="team-card" style="background:#fafafa; padding:12px; text-align:center; border-radius:8px;">
+                    <div style="background-image:url('/images/c1.jpg'); height:120px; background-size:cover; background-position:center; border-radius:6px;"></div>
+                    <h3 style="font-size:16px; margin-top:10px;">Maya Chen</h3>
+                    <p style="font-size:13px; color:#666;">lead grower</p>
+                </div>
+
+                <div class="team-card" style="background:#fafafa; padding:12px; text-align:center; border-radius:8px;">
+                    <div style="background-image:url('/images/g4.jpg'); height:120px; background-size:cover; background-position:center; border-radius:6px;"></div>
+                    <h3 style="font-size:16px; margin-top:10px;">Omar Hassan</h3>
+                    <p style="font-size:13px; color:#666;">hydroponics</p>
+                </div>
+
+                <div class="team-card" style="background:#fafafa; padding:12px; text-align:center; border-radius:8px;">
+                    <div style="background-image:url('/images/c5.jpg'); height:120px; background-size:cover; background-position:center; border-radius:6px;"></div>
+                    <h3 style="font-size:16px; margin-top:10px;">Lea Velez</h3>
+                    <p style="font-size:13px; color:#666;">soil scientist</p>
+                </div>
+
+                <div class="team-card" style="background:#fafafa; padding:12px; text-align:center; border-radius:8px;">
+                    <div style="background-image:url('/images/g2.jpg'); height:120px; background-size:cover; background-position:center; border-radius:6px;"></div>
+                    <h3 style="font-size:16px; margin-top:10px;">Daniel Cruz</h3>
+                    <p style="font-size:13px; color:#666;">garden planner</p>
+                </div>
+
             </div>
+
         </div>
     </div>
 </section>
+
+<style>
+@media (max-width:768px){
+#teamGrid{
+grid-template-columns:repeat(2,1fr) !important;
+}
+}
+</style>
 
 <!-- FOOTER -->
 <footer class="footer">
