@@ -5,33 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="404 – page not found. Groww Urban urban farming collective.">
     <title>404 · page not found · Groww Urban</title>
-     <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
     <style>
-        /* ----- RESET & VARIABLES (exactly as index) ----- */
+        /* ----- RESET & VARIABLES ----- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         :root {
-            --bg-primary: #FAFAFA;        /* smoke */
-            --bg-secondary: #f0f0e8;       /* soft warm off-white */
-            --text-main: #111111;           /* deep */
+            --bg-primary: #FAFAFA;
+            --bg-secondary: #f0f0e8;
+            --text-main: #111111;
             --text-heading: #111111;
             --card-bg: #ffffff;
             --border-light: #ddddd5;
-            --accent-green: #556B2F;        /* olive */
-            --accent-brown: #6D4C41;         /* soil */
-            --navbar-bg: #111111;            /* deep black */
-
+            --accent-green: #556B2F;
+            --accent-brown: #6D4C41;
+            --navbar-bg: #111111;
             --olive: #556B2F;
             --soil: #6D4C41;
             --deep: #111111;
             --smoke: #FAFAFA;
+            --footer-text: #9ca3af;
         }
         [data-theme="dark"] {
             --bg-primary: #111111;
@@ -43,17 +43,21 @@
             --accent-green: #6b8c3e;
             --accent-brown: #8b6b5a;
             --navbar-bg: #000000;
+            --deep: #000000;
+            --olive: #6b8c3e;
+            --soil: #a67c52;
+            --footer-text: #aaa;
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--deep);  /* unified dark to match 404 hero */
+            background-color: var(--deep);
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
             line-height: 1.5;
             height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;               /* 🔒 no scroll at all */
+            overflow: hidden;
         }
         h1, h2, h3, h4, h5, h6 {
             color: var(--text-heading);
@@ -63,19 +67,18 @@
         a {
             text-decoration: none;
         }
-        /* container */
         .container {
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 1rem;
         }
-        /* navbar – exact copy from index (compact, no scroll influence) */
+        /* ----- FIXED NAVBAR (theme/rtl on right side) ----- */
         .navbar-container {
             background-color: var(--navbar-bg);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             border-bottom: 1px solid #2f2f2f;
-            padding: 0.5rem 0;             /* slightly tighter to keep everything in view */
+            padding: 0.4rem 0;
             position: fixed;
             top: 0;
             width: 100%;
@@ -97,7 +100,7 @@
             transform: scale(1.05);
         }
         .logo-icon {
-            width: 2.5rem;                 /* slightly smaller for fixed fit */
+            width: 2.5rem;
             height: 2.5rem;
             background-color: rgba(255,255,255,0.1);
             border-radius: 0.75rem;
@@ -126,29 +129,10 @@
             display: block;
             margin-top: -0.25rem;
             font-weight: 500;
-            letter-spacing: 0.05em;
         }
-        /* desktop nav */
-        .desktop-nav {
-            display: none;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        .nav-link {
-            color: #e0e0e0;
-            padding: 0.5rem 0.875rem;
-            transition: 0.2s;
-            font-weight: 500;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
-        .nav-link:hover {
-            color: #FAFAFA;
-            background-color: #2a2a2a;
-            border-radius: 30px;
-        }
+        /* ----- RIGHT SIDE CONTROLS ----- */
         .navbar-right-desktop {
-            display: none;
+            display: flex;
             align-items: center;
             gap: 0.5rem;
         }
@@ -164,7 +148,7 @@
             border: none;
             cursor: pointer;
             transition: 0.2s;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         .icon-btn:hover {
             background-color: var(--olive);
@@ -182,12 +166,12 @@
             gap: 0.4rem;
             transition: 0.2s;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            white-space: nowrap;
         }
         .login-btn:hover {
             background-color: white;
             color: var(--deep);
         }
-        /* mobile menu button (visible only below 1280px) */
         .mobile-menu-btn {
             display: flex;
             color: white;
@@ -196,7 +180,10 @@
             border: none;
             cursor: pointer;
         }
-        /* mobile menu overlay (static inside body but transforms) */
+        .desktop-nav {
+            display: none;
+        }
+        /* mobile menu overlay */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -251,20 +238,20 @@
             width: 1.75rem;
         }
 
-        /* 404 HERO – takes remaining viewport height (no scroll) */
+        /* 404 HERO – PERFECT CENTERING using flex */
         .hero-404 {
             background-color: var(--deep);
-            flex: 1;                       /* fills space between fixed navbar and footer */
+            flex: 1;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;               /* hide pattern overflow, no scrolling */
-            margin-top: 62px;                /* fixed navbar height (approx) */
+            overflow: hidden;
+            margin-top: 60px;
             margin-bottom: 0;
-            padding: 1rem 0 1rem 0;
-            min-height: 0;                  /* essential for flex constraints */
+            padding: 0;
+            min-height: 0;
         }
         .hero-pattern {
             position: absolute;
@@ -275,14 +262,15 @@
         }
         .content-404 {
             max-width: 700px;
+            width: 100%;
             margin: 0 auto;
             position: relative;
             z-index: 5;
-            padding: 0.5rem 1rem;
-            width: 100%;
+            text-align: center;
+            padding: 0 1rem;
         }
         .number-404 {
-            font-size: 8rem;                /* scaled down slightly to fit tight */
+            font-size: 8rem;
             font-weight: 900;
             color: var(--olive);
             line-height: 1;
@@ -390,13 +378,14 @@
         .fact-label {
             font-size: 0.75rem;
             display: block;
+            color: #d1d5db;
         }
 
-        /* FOOTER – compact, pinned at bottom (no scroll) */
+        /* FOOTER – compact */
         .footer {
             background-color: var(--deep);
             color: white;
-            padding: 0.75rem 0 1rem 0;      /* very compact */
+            padding: 0.75rem 0 1rem 0;
             border-top: 1px solid #2a2a2a;
             flex-shrink: 0;
             width: 100%;
@@ -460,7 +449,7 @@
             margin-bottom: 0.2rem;
         }
         .footer-links a {
-            color: #9ca3af;
+            color: var(--footer-text);
             transition: 0.2s;
             font-size: 0.75rem;
         }
@@ -495,21 +484,19 @@
             border-top: 1px solid rgba(255,255,255,0.2);
             padding-top: 0.5rem;
             text-align: center;
-            color: #9ca3af;
+            color: var(--footer-text);
             font-size: 0.65rem;
         }
-
-        /* scroll-top hidden because no scroll */
         #scroll-top {
             display: none !important;
         }
-
         @media (min-width: 1280px) {
-            .desktop-nav { display: flex; }
-            .navbar-right-desktop { display: flex; }
             .mobile-menu-btn { display: none; }
         }
-
+        @media (max-width: 640px) {
+            .login-btn span { display: none; }
+            .login-btn i { margin: 0; }
+        }
         .fade-in-up {
             animation: fadeInUp 0.5s ease;
         }
@@ -517,8 +504,6 @@
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* ensure no overflow creates scroll */
         html, body {
             overflow: hidden;
             height: 100%;
@@ -527,14 +512,52 @@
 </head>
 <body>
 
-<!-- NAVBAR (identical to index but compact, no dropdowns) -->
-
-
-<!-- MOBILE MENU overlay (identical functionality) -->
-
+<!-- ========== NAVBAR ========== -->
+<div class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-seedling"></i>
+            </div>
+            <div>
+                <span class="logo-text">GROWW<span> URBAN</span></span>
+                <span class="logo-tagline">grow where you are</span>
+            </div>
+        </a>
+        <div style="display: flex; align-items: center; gap: 0.4rem;">
+            <button class="icon-btn" id="desktop-theme-toggle" aria-label="Toggle theme">
+                <i id="desktop-theme-icon" class="fas fa-circle-half-stroke"></i>
+            </button>
+            <button class="icon-btn" id="desktop-rtl-toggle" aria-label="Toggle RTL">
+                <i class="fas fa-exchange-alt"></i>
+            </button>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
 </div>
 
-<!-- 404 CONTENT – FIXED CENTERED HERO (takes all remaining space) -->
+<!-- ========== MOBILE MENU ========== -->
+<div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+        <div class="logo-text" style="color:white;">GROWW<span>URBAN</span></div>
+        <button class="mobile-menu-close" id="close-mobile-menu">&times;</button>
+    </div>
+    <div class="mobile-menu-items">
+        <button class="mobile-action-item" id="mobile-theme-toggle">
+            <i id="mobile-theme-icon" class="fas fa-circle-half-stroke"></i> toggle theme
+        </button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle">
+            <i class="fas fa-exchange-alt"></i> switch direction
+        </button>
+        
+        <a href="index.html" class="mobile-menu-item"><i class="fas fa-seedling"></i> homepage</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> contact</a>
+    </div>
+</div>
+
+<!-- ========== 404 HERO – PERFECTLY CENTERED ========== -->
 <section class="hero-404">
     <div class="hero-pattern"></div>
     <div class="container content-404 fade-in-up">
@@ -552,7 +575,6 @@
             <a href="index.html" class="btn-primary"><i class="fas fa-seedling"></i> back to homepage</a>
             <a href="contact.html" class="btn-outline"><i class="fas fa-envelope"></i> contact grower</a>
         </div>
-        <!-- farm stats (like index) to keep consistent -->
         <div class="farm-fact">
             <div class="fact-item"><span class="fact-number">+450</span> <span class="fact-label">urban farms</span></div>
             <div class="fact-item"><span class="fact-number">12k</span> <span class="fact-label">weekly harvests</span></div>
@@ -560,87 +582,110 @@
     </div>
 </section>
 
-<!-- FOOTER (compact version, no scroll trigger) -->
+<!-- ========== FOOTER (RESTORED) ========== -->
 
 
-<!-- hidden scroll-top (not used) -->
 <button id="scroll-top" style="display:none;"><i class="fas fa-arrow-up"></i></button>
 
 <script>
-    // EXACT theme / rtl / mobile menu logic – identical to index
-    const htmlEl = document.documentElement;
-    const desktopTheme = document.getElementById('desktop-theme-toggle');
-    const mobileTheme = document.getElementById('mobile-theme-toggle');
-    const desktopIcon = document.getElementById('desktop-theme-icon');
-    const mobileIcon = document.getElementById('mobile-theme-icon');
-    const desktopRtl = document.getElementById('desktop-rtl-toggle');
-    const mobileRtl = document.getElementById('mobile-rtl-toggle');
+    (function() {
+        const htmlEl = document.documentElement;
+        const desktopTheme = document.getElementById('desktop-theme-toggle');
+        const mobileTheme = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        const mobileLogout = document.getElementById('mobile-logout-btn');
 
-    let theme = localStorage.getItem('theme') || 'light';
-    htmlEl.setAttribute('data-theme', theme);
-    if (theme === 'dark') { 
-        htmlEl.classList.add('dark'); 
-        if(desktopIcon) desktopIcon.className = 'fas fa-sun'; 
-        if(mobileIcon) mobileIcon.className = 'fas fa-sun'; 
-    } else {
-        if(desktopIcon) desktopIcon.className = 'fas fa-circle-half-stroke';
-        if(mobileIcon) mobileIcon.className = 'fas fa-circle-half-stroke';
-    }
-
-    function toggleTheme() {
-        let isDark = htmlEl.getAttribute('data-theme') === 'dark';
-        let newTheme = isDark ? 'light' : 'dark';
-        htmlEl.setAttribute('data-theme', newTheme); 
-        localStorage.setItem('theme', newTheme);
-        if (newTheme === 'dark') htmlEl.classList.add('dark'); else htmlEl.classList.remove('dark');
-        if (desktopIcon) desktopIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
-        if (mobileIcon) mobileIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
-    }
-    if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
-    if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
-
-    function toggleRtl() { 
-        let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'; 
-        htmlEl.setAttribute('dir', dir); 
-        localStorage.setItem('direction', dir); 
-    }
-    if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
-    if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
-
-    // mobile menu
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const closeBtn = document.getElementById('close-mobile-menu');
-
-    if(menuBtn) {
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            mobileMenu.classList.add('active');
-        });
-    }
-    if(closeBtn) {
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            mobileMenu.classList.remove('active');
-        });
-    }
-    mobileMenu.addEventListener('click', (e) => {
-        if (e.target === mobileMenu) {
-            mobileMenu.classList.remove('active');
+        // theme init - FIXED: properly apply saved theme
+        let savedTheme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', savedTheme);
+        
+        function updateThemeIcons(theme) {
+            const iconClass = theme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+            if (desktopIcon) desktopIcon.className = iconClass;
+            if (mobileIcon) mobileIcon.className = iconClass;
         }
-    });
+        updateThemeIcons(savedTheme);
 
-    // resize handler: close mobile menu on large screens
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 1280) mobileMenu.classList.remove('active');
-    });
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcons(newTheme);
+        }
+        
+        // Add event listeners with proper error handling
+        if (desktopTheme) {
+            desktopTheme.addEventListener('click', toggleTheme);
+        }
+        if (mobileTheme) {
+            mobileTheme.addEventListener('click', toggleTheme);
+        }
 
-    // logout/login redirect
-    document.getElementById('mobile-logout-btn')?.addEventListener('click', function() {
-        window.location.href = 'login.html';
-    });
+        // RTL function
+        function toggleRtl() {
+            let currentDir = htmlEl.getAttribute('dir') || 'ltr';
+            let newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', newDir);
+            localStorage.setItem('direction', newDir);
+        }
+        
+        if (desktopRtl) {
+            desktopRtl.addEventListener('click', toggleRtl);
+        }
+        if (mobileRtl) {
+            mobileRtl.addEventListener('click', toggleRtl);
+        }
 
-    // NO scroll button logic – no scroll at all
+        // mobile menu
+        if (menuBtn) {
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.add('active');
+            });
+        }
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.remove('active');
+            });
+        }
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        }
+        
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1280 && mobileMenu) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        if (mobileLogout) {
+            mobileLogout.addEventListener('click', function() {
+                window.location.href = 'login.html';
+            });
+        }
+
+        // Apply saved direction
+        const savedDir = localStorage.getItem('direction');
+        if (savedDir) {
+            htmlEl.setAttribute('dir', savedDir);
+        }
+    })();
 </script>
+
+<!-- Add login button back to navbar (was missing) - dynamically add it back -->
+
+
 </body>
 </html>
