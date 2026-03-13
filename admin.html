@@ -3,54 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>Admin Dashboard | Groww Urban</title>
+    <title>Admin Dashboard | Urban Farming</title>
      <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* === ADMIN DASHBOARD – OLIVE GREEN THEME (MATCHES INDEX.HTML) === */
         :root {
-            /* Primary Color – olive green (from index.html) */
-            --primary-color: #556B2F;      /* Olive green */
-            --primary-dark: #3D4F24;        /* Darker olive */
-            --primary-light: #6B8C3E;       /* Lighter olive */
-            --primary-ultralight: #F0F3E8;  /* Very light olive */
-            
-            /* Neutral Colors - matching index.html */
-            --text-color: #FFFFFF;         /* White on dark sections */
-            --text-light: #E5E5E5;         /* Light grey */
-            --text-lighter: #A0A0A0;       /* Medium grey */
-            --bg-color: #111111;            /* Deep black (from index.html) */
-            --bg-secondary: #1E1E1E;        /* Dark grey */
-            --sidebar-bg: #000000;          /* Pure black sidebar */
-            --card-bg: #222222;              /* Dark cards (matching index.html dark mode) */
-            --border-color: #333333;         /* Dark border */
+            --primary-color: #556B2F;
+            --primary-dark: #3D4F24;
+            --primary-light: #6B8C3E;
+            --primary-ultralight: #F0F3E8;
+            --text-color: #FFFFFF;
+            --text-light: #E5E5E5;
+            --text-lighter: #A0A0A0;
+            --bg-color: #111111;
+            --bg-secondary: #1E1E1E;
+            --sidebar-bg: #000000;
+            --card-bg: #222222;
+            --border-color: #333333;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.7);
             --transition: all 0.25s ease;
             --border-radius: 12px;
             --header-height: 80px;
             --sidebar-width: 280px;
-            
-            /* Olive accents */
             --olive: #556B2F;
-            --soil: #6D4C41;                 /* Brown accent from index.html */
+            --soil: #6D4C41;
             --deep: #111111;
         }
 
         .light-theme {
-            --primary-color: #556B2F;      /* Same olive green */
+            --primary-color: #556B2F;
             --primary-dark: #3D4F24;
             --primary-light: #6B8C3E;
             --primary-ultralight: #F0F3E8;
-            --text-color: #111111;          /* Deep text (from index.html) */
+            --text-color: #111111;
             --text-light: #2E2E2E;
             --text-lighter: #4B4B4B;
-            --bg-color: #FAFAFA;             /* Smoke (from index.html) */
-            --bg-secondary: #f0f0e8;          /* Soft warm off-white */
-            --sidebar-bg: #000000;            /* Keep black sidebar in light mode */
-            --card-bg: #FFFFFF;                /* White cards */
-            --border-color: #ddddd5;           /* Light border from index.html */
+            --bg-color: #FAFAFA;
+            --bg-secondary: #f0f0e8;
+            --sidebar-bg: #000000;
+            --card-bg: #FFFFFF;
+            --border-color: #ddddd5;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
@@ -88,7 +83,7 @@
             list-style: none;
         }
 
-        /* ===== SIDEBAR STYLES - MATCHING INDEX.HTML LOGO ===== */
+        /* ===== SIDEBAR STYLES ===== */
         .sidebar {
             width: var(--sidebar-width);
             background-color: var(--sidebar-bg);
@@ -101,7 +96,7 @@
             z-index: 1000;
             left: -280px;
             overflow: hidden;
-            color: #FFFFFF; /* Force white text in sidebar */
+            color: #FFFFFF;
         }
 
         body:not(.rtl) .sidebar.active {
@@ -115,7 +110,6 @@
             flex-shrink: 0;
         }
 
-        /* Logo design exactly matching index.html */
         .logo {
             display: flex;
             align-items: center;
@@ -192,10 +186,15 @@
             gap: 12px;
             padding: 12px 15px;
             border-radius: 8px;
-            color: #FFFFFF; /* Force white text */
+            color: #FFFFFF;
             transition: var(--transition);
             font-weight: 500;
             font-size: 0.95rem;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
         }
 
         .nav-link:hover {
@@ -205,7 +204,7 @@
 
         .nav-link.active {
             background-color: var(--olive);
-            color: #000000; /* Black text on olive */
+            color: #000000;
             box-shadow: var(--shadow);
         }
 
@@ -470,7 +469,7 @@
             font-size: 0.95rem;
         }
 
-        /* Stats Cards */
+        /* Stats Cards - Global (always visible) */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -547,7 +546,7 @@
             font-size: 0.85rem;
         }
 
-        /* Dashboard Grid */
+        /* Dashboard Grid & Cards */
         .dashboard-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1025,6 +1024,19 @@
             color: var(--olive);
         }
 
+        /* ===== SECTION VISIBILITY ===== */
+        .admin-section {
+            display: none;
+        }
+        .admin-section.active-section {
+            display: block;
+        }
+
+        /* Keep stats visible always */
+        .global-stats {
+            display: block;
+        }
+
         /* RTL Styles */
         body.rtl {
             direction: rtl;
@@ -1111,7 +1123,7 @@
             left: 30px;
         }
 
-        /* Desktop styles for sidebar */
+        /* Desktop styles */
         @media (min-width: 1024px) {
             .sidebar {
                 left: 0;
@@ -1142,7 +1154,7 @@
             }
         }
 
-        /* Responsive Styles */
+        /* Responsive */
         @media (min-width: 640px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1173,97 +1185,6 @@
             .reports-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            .top-header {
-                padding: 0 30px;
-            }
-            .dashboard-content {
-                padding: 30px;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .search-bar {
-                display: none;
-            }
-            .page-title {
-                font-size: 1.1rem;
-            }
-            .header-right {
-                gap: 5px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .dashboard-content {
-                padding: 20px;
-            }
-            .stat-value {
-                font-size: 1.8rem;
-            }
-            .content-header h1 {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .dashboard-content {
-                padding: 16px;
-            }
-            .logo {
-                font-size: 1.1rem;
-            }
-            .logo-icon {
-                font-size: 1.2rem;
-            }
-            .page-title {
-                font-size: 0.9rem;
-                padding-left: 8px;
-            }
-            body.rtl .page-title {
-                padding-right: 8px;
-            }
-            .header-action-btn,
-            .theme-toggle,
-            .rtl-toggle {
-                width: 40px;
-                height: 40px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-right {
-                gap: 3px;
-            }
-            .header-action-btn,
-            .theme-toggle,
-            .rtl-toggle {
-                width: 36px;
-                height: 36px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Scrollbar Styling */
-        .sidebar-nav::-webkit-scrollbar,
-        .admin-main::-webkit-scrollbar {
-            width: 4px;
-        }
-        .sidebar-nav::-webkit-scrollbar-track,
-        .admin-main::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-        .sidebar-nav::-webkit-scrollbar-thumb,
-        .admin-main::-webkit-scrollbar-thumb {
-            background: var(--olive);
-            border-radius: 2px;
-        }
-        
-        /* Soil brown accent for variety */
-        .soil-accent {
-            color: var(--soil);
-        }
-        .bg-soil-light {
-            background-color: rgba(109, 76, 65, 0.2);
         }
     </style>
 </head>
@@ -1276,23 +1197,23 @@
         <div class="sidebar-header">
             <a href="index.html" class="logo">
                 <div class="logo-icon"><i class="fas fa-seedling"></i></div>
-                <div>
-                    <div class="logo-text">Groww Urban</div>
-                    <span class="logo-tagline">concrete harvest</span>
-                </div>
+              <div>
+    <div class="logo-text" style="white-space:nowrap;">Urban Farming</div>
+    <span class="logo-tagline">concrete harvest</span>
+</div>
             </a>
         </div>
         
         <nav class="sidebar-nav">
             <div class="nav-title">MAIN</div>
             <ul class="nav-menu">
-                <li><a href="#overview" class="nav-link active" data-section="overview"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="#users" class="nav-link" data-section="users"><i class="fas fa-users"></i> Users</a></li>
-                <li><a href="#bookings" class="nav-link" data-section="bookings"><i class="fas fa-seedling"></i> Farm Kits</a></li>
-                <li><a href="#content" class="nav-link" data-section="content"><i class="fas fa-mobile-alt"></i> Content</a></li>
-                <li><a href="#messages" class="nav-link" data-section="messages"><i class="fas fa-envelope"></i> Messages</a></li>
-                <li><a href="#reports" class="nav-link" data-section="reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
-                <li><a href="#settings" class="nav-link" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><button class="nav-link active" data-section="overview"><i class="fas fa-tachometer-alt"></i> Dashboard</button></li>
+                <li><button class="nav-link" data-section="users"><i class="fas fa-users"></i> Users</button></li>
+                <li><button class="nav-link" data-section="bookings"><i class="fas fa-seedling"></i> Farm Kits</button></li>
+                <li><button class="nav-link" data-section="content"><i class="fas fa-mobile-alt"></i> Content</button></li>
+                <li><button class="nav-link" data-section="messages"><i class="fas fa-envelope"></i> Messages</button></li>
+                <li><button class="nav-link" data-section="reports"><i class="fas fa-chart-bar"></i> Reports</button></li>
+                <li><button class="nav-link" data-section="settings"><i class="fas fa-cog"></i> Settings</button></li>
             </ul>
             
             <div class="sidebar-footer">
@@ -1320,21 +1241,13 @@
                 <button class="mobile-toggle" id="mobileToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                
-                <div class="page-title"> ADMIN Dashboard</div>
-                
-                
+                <div class="page-title">ADMIN Dashboard</div>
             </div>
             
             <div class="header-right">
-                
-                
-               
-                
                 <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
                     <i class="fas fa-sun"></i>
                 </button>
-                
                 <button class="rtl-toggle" id="rtlToggle" title="Toggle RTL/LTR">
                     <i class="fas fa-arrow-right-arrow-left"></i>
                 </button>
@@ -1344,12 +1257,12 @@
         <!-- Dashboard Content -->
         <section class="dashboard-content" id="dashboardContent">
             <div class="content-header">
-                <h1>🌱 Urban Farm Dashboard</h1>
+                <h1>🌱 Urban Farm Admin</h1>
                 <p>Manage your farm kits, workshops, and urban growers community</p>
             </div>
             
-            <!-- Overview Section -->
-            <section id="overview">
+            <!-- Global Stats (always visible) -->
+            <div class="global-stats">
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-header">
@@ -1384,289 +1297,217 @@
                         <div class="stat-label">Avg. Harvest Rating</div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- User Management -->
-            <section id="users" style="margin-top:30px;">
+            <!-- ========== SECTIONS ========== -->
+
+            <!-- Overview Section (default active) -->
+            <div id="section-overview" class="admin-section active-section">
+                <!-- User Management -->
+                <section style="margin-top:30px;">
+                    <div class="dashboard-card full-width-card">
+                        <div class="card-header">
+                            <h3>Grower Management</h3>
+                            <a href="#">View All Growers <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="admin-table">
+                                    <thead><tr><th>Grower</th><th>Email</th><th>Role</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><div class="user-cell"><div class="user-avatar-sm">JD</div><span>John Doe</span></div></td><td>john@example.com</td><td>Home Grower</td><td><span class="booking-status status-active">Active</span></td><td>Jan 15, 2026</td><td><button class="action-btn"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                                        <tr><td><div class="user-cell"><div class="user-avatar-sm">JS</div><span>Jane Smith</span></div></td><td>jane@example.com</td><td>Workshop Leader</td><td><span class="booking-status status-active">Active</span></td><td>Dec 10, 2025</td><td><button class="action-btn"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                                        <tr><td><div class="user-cell"><div class="user-avatar-sm">MB</div><span>Mike Brown</span></div></td><td>mike@example.com</td><td>Urban Farmer</td><td><span class="booking-status status-pending">Pending</span></td><td>Feb 1, 2026</td><td><button class="action-btn"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                                        <tr><td><div class="user-cell"><div class="user-avatar-sm">SW</div><span>Sarah Wilson</span></div></td><td>sarah@example.com</td><td>Community Gardener</td><td><span class="booking-status status-active">Active</span></td><td>Jan 28, 2026</td><td><button class="action-btn"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Farm Kits & Orders -->
+                <section style="margin-top:30px;">
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header"><h3>Farm Kit Inventory</h3><a href="#">Manage Kits <i class="fas fa-arrow-right"></i></a></div>
+                            <div class="card-body">
+                                <div class="booking-item"><div class="booking-info"><h4>Veg Starter Kit</h4><div class="booking-meta">24 units in stock</div></div><span class="booking-status status-active">Active</span></div>
+                                <div class="booking-item"><div class="booking-info"><h4>Herb Lover Kit</h4><div class="booking-meta">18 units in stock</div></div><span class="booking-status status-active">Active</span></div>
+                                <div class="booking-item"><div class="booking-info"><h4>Microgreens Kit</h4><div class="booking-meta">7 units in stock</div></div><span class="booking-status status-pending">Low Stock</span></div>
+                                <div class="booking-item"><div class="booking-info"><h4>Hydroponic System</h4><div class="booking-meta">5 units in stock</div></div><span class="booking-status status-pending">Low Stock</span></div>
+                                <div class="booking-item"><div class="booking-info"><h4>Rooftop Salad Kit</h4><div class="booking-meta">32 units in stock</div></div><span class="booking-status status-active">Active</span></div>
+                            </div>
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="card-header"><h3>Recent Kit Orders</h3><a href="#">View All <i class="fas fa-arrow-right"></i></a></div>
+                            <div class="card-body">
+                                <div class="booking-item"><div class="booking-info"><h4>Rooftop Salad Kit</h4><div class="booking-meta">John Doe • 2 kits</div></div><span class="booking-status status-active">Shipped</span></div>
+                                <div class="booking-item"><div class="booking-info"><h4>Herb Lover Kit</h4><div class="booking-meta">Jane Smith • 1 kit</div></div><span class="booking-status status-active">Delivered</span></div>
+                                <div class="booking-item"><div class="booking-info"><h4>Hydroponic System</h4><div class="booking-meta">Mike Brown • 1 system</div></div><span class="booking-status status-pending">Processing</span></div>
+                                <div class="booking-item"><div class="booking-info"><h4>Microgreens Kit</h4><div class="booking-meta">Sarah Wilson • 3 kits</div></div><span class="booking-status status-cancelled">Cancelled</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Messages Preview -->
+                <section style="margin-top:30px;">
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header"><h3>Recent Messages</h3><a href="#">View All <i class="fas fa-arrow-right"></i></a></div>
+                            <div class="card-body">
+                                <div class="message-item"><div class="message-avatar">JD</div><div class="message-content"><div class="message-header"><span class="message-sender">John Doe</span><span class="message-time">5 min ago</span></div><div class="message-text">Question about hydroponic setup...</div></div></div>
+                                <div class="message-item"><div class="message-avatar">AS</div><div class="message-content"><div class="message-header"><span class="message-sender">Alice Smith</span><span class="message-time">2 hours ago</span></div><div class="message-text">When is the next workshop?</div></div></div>
+                                <div class="message-item"><div class="message-avatar">RJ</div><div class="message-content"><div class="message-header"><span class="message-sender">Robert Johnson</span><span class="message-time">Yesterday</span></div><div class="message-text">My tomatoes are thriving! Thanks!</div></div></div>
+                            </div>
+                        </div>
+                        <div class="dashboard-card">
+                            <div class="card-header"><h3>Notifications</h3><a href="#">Mark all read</a></div>
+                            <div class="card-body">
+                                <div class="message-item"><div class="message-avatar" style="background-color:rgba(85,107,47,0.2);color:var(--olive);"><i class="fas fa-seedling"></i></div><div class="message-content"><div class="message-header"><span class="message-sender">New Order</span><span class="message-time">10 min ago</span></div><div class="message-text">John Doe ordered Rooftop Salad Kit</div></div></div>
+                                <div class="message-item"><div class="message-avatar" style="background-color:rgba(239,68,68,0.2);color:#ef4444;"><i class="fas fa-exclamation"></i></div><div class="message-content"><div class="message-header"><span class="message-sender">Low Stock Alert</span><span class="message-time">1 hour ago</span></div><div class="message-text">Microgreens Kit: 7 units left</div></div></div>
+                                <div class="message-item"><div class="message-avatar" style="background-color:rgba(16,185,129,0.2);color:#10b981;"><i class="fas fa-check"></i></div><div class="message-content"><div class="message-header"><span class="message-sender">Payment Received</span><span class="message-time">3 hours ago</span></div><div class="message-text">$128.50 from Jane Smith</div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Users Section (detailed) -->
+            <div id="section-users" class="admin-section">
                 <div class="dashboard-card full-width-card">
                     <div class="card-header">
-                        <h3>Grower Management</h3>
-                        <a href="#">View All Growers <i class="fas fa-arrow-right"></i></a>
+                        <h3>👥 All Growers & Users</h3>
+                        <a href="#">Export List</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="admin-table">
-                                <thead>
-                                    <tr>
-                                        <th>Grower</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                        <th>Joined</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
+                                <thead><tr><th>Grower</th><th>Email</th><th>Role</th><th>Status</th><th>Joined</th><th>Kits Purchased</th><th>Actions</th></tr></thead>
                                 <tbody>
-                                    <tr>
-                                        <td><div class="user-cell"><div class="user-avatar-sm">JD</div><span>John Doe</span></div></td>
-                                        <td>john@example.com</td>
-                                        <td>Home Grower</td>
-                                        <td><span class="booking-status status-active">Active</span></td>
-                                        <td>Jan 15, 2026</td>
-                                        <td>
-                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="user-cell"><div class="user-avatar-sm">JS</div><span>Jane Smith</span></div></td>
-                                        <td>jane@example.com</td>
-                                        <td>Workshop Leader</td>
-                                        <td><span class="booking-status status-active">Active</span></td>
-                                        <td>Dec 10, 2025</td>
-                                        <td>
-                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="user-cell"><div class="user-avatar-sm">MB</div><span>Mike Brown</span></div></td>
-                                        <td>mike@example.com</td>
-                                        <td>Urban Farmer</td>
-                                        <td><span class="booking-status status-pending">Pending</span></td>
-                                        <td>Feb 1, 2026</td>
-                                        <td>
-                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="user-cell"><div class="user-avatar-sm">SW</div><span>Sarah Wilson</span></div></td>
-                                        <td>sarah@example.com</td>
-                                        <td>Community Gardener</td>
-                                        <td><span class="booking-status status-active">Active</span></td>
-                                        <td>Jan 28, 2026</td>
-                                        <td>
-                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
-                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
+                                    <tr><td><div class="user-cell"><div class="user-avatar-sm">JD</div><span>John Doe</span></div></td><td>john@example.com</td><td>Home Grower</td><td><span class="booking-status status-active">Active</span></td><td>Jan 15, 2026</td><td>5</td><td><button class="action-btn"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                                    <tr><td><div class="user-cell"><div class="user-avatar-sm">JS</div><span>Jane Smith</span></div></td><td>jane@example.com</td><td>Workshop Leader</td><td><span class="booking-status status-active">Active</span></td><td>Dec 10, 2025</td><td>12</td><td><button class="action-btn"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                                    <tr><td><div class="user-cell"><div class="user-avatar-sm">MB</div><span>Mike Brown</span></div></td><td>mike@example.com</td><td>Urban Farmer</td><td><span class="booking-status status-pending">Pending</span></td><td>Feb 1, 2026</td><td>2</td><td><button class="action-btn"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                                    <tr><td><div class="user-cell"><div class="user-avatar-sm">SW</div><span>Sarah Wilson</span></div></td><td>sarah@example.com</td><td>Community Gardener</td><td><span class="booking-status status-active">Active</span></td><td>Jan 28, 2026</td><td>8</td><td><button class="action-btn"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                                    <tr><td><div class="user-cell"><div class="user-avatar-sm">AC</div><span>Alex Chen</span></div></td><td>alex@example.com</td><td>Master Grower</td><td><span class="booking-status status-active">Active</span></td><td>Nov 5, 2025</td><td>15</td><td><button class="action-btn"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Content & Farm Kits -->
-            <section id="content" style="margin-top:30px;">
+            <!-- Farm Kits Section (detailed) -->
+            <div id="section-bookings" class="admin-section">
                 <div class="dashboard-grid">
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <h3>Farm Kit Inventory</h3>
-                            <a href="#">Manage Kits <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                    <div class="dashboard-card full-width-card">
+                        <div class="card-header"><h3>🌿 Complete Farm Kit Inventory</h3><a href="#">Add New Kit</a></div>
                         <div class="card-body">
-                            <div class="booking-item">
-                                <div class="booking-info"><h4>Veg Starter Kit</h4><div class="booking-meta">24 units in stock</div></div>
-                                <span class="booking-status status-active">Active</span>
-                            </div>
-                            <div class="booking-item">
-                                <div class="booking-info"><h4>Herb Lover Kit</h4><div class="booking-meta">18 units in stock</div></div>
-                                <span class="booking-status status-active">Active</span>
-                            </div>
-                            <div class="booking-item">
-                                <div class="booking-info"><h4>Microgreens Kit</h4><div class="booking-meta">7 units in stock</div></div>
-                                <span class="booking-status status-pending">Low Stock</span>
-                            </div>
-                            <div class="booking-item">
-                                <div class="booking-info"><h4>Hydroponic System</h4><div class="booking-meta">5 units in stock</div></div>
-                                <span class="booking-status status-pending">Low Stock</span>
-                            </div>
-                            <div class="booking-item">
-                                <div class="booking-info"><h4>Rooftop Salad Kit</h4><div class="booking-meta">32 units in stock</div></div>
-                                <span class="booking-status status-active">Active</span>
+                            <div class="table-responsive">
+                                <table class="admin-table">
+                                    <thead><tr><th>Kit Name</th><th>Category</th><th>Stock</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Veg Starter Kit</td><td>Vegetable</td><td>24</td><td>$39</td><td><span class="booking-status status-active">Active</span></td><td><button class="action-btn"><i class="fas fa-edit"></i></button></td></tr>
+                                        <tr><td>Herb Lover Kit</td><td>Herb</td><td>18</td><td>$29</td><td><span class="booking-status status-active">Active</span></td><td><button class="action-btn"><i class="fas fa-edit"></i></button></td></tr>
+                                        <tr><td>Microgreens Kit</td><td>Microgreen</td><td>7</td><td>$34</td><td><span class="booking-status status-pending">Low Stock</span></td><td><button class="action-btn"><i class="fas fa-edit"></i></button></td></tr>
+                                        <tr><td>Hydroponic System</td><td>Hydroponic</td><td>5</td><td>$129</td><td><span class="booking-status status-pending">Low Stock</span></td><td><button class="action-btn"><i class="fas fa-edit"></i></button></td></tr>
+                                        <tr><td>Rooftop Salad Kit</td><td>Salad</td><td>32</td><td>$49</td><td><span class="booking-status status-active">Active</span></td><td><button class="action-btn"><i class="fas fa-edit"></i></button></td></tr>
+                                        <tr><td>Compost Starter</td><td>Accessory</td><td>15</td><td>$22</td><td><span class="booking-status status-active">Active</span></td><td><button class="action-btn"><i class="fas fa-edit"></i></button></td></tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div class="dashboard-card" id="bookings">
-                        <div class="card-header">
-                            <h3>Recent Kit Orders</h3>
-                            <a href="#">View All <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                    <div class="dashboard-card">
+                        <div class="card-header"><h3>📦 All Orders</h3><a href="#">Process Orders</a></div>
                         <div class="card-body">
-                            <div class="booking-item">
-                                <div class="booking-info"><h4>Rooftop Salad Kit</h4><div class="booking-meta">John Doe • 2 kits</div></div>
-                                <span class="booking-status status-active">Shipped</span>
-                            </div>
-                            <div class="booking-item">
-                                <div class="booking-info"><h4>Herb Lover Kit</h4><div class="booking-meta">Jane Smith • 1 kit</div></div>
-                                <span class="booking-status status-active">Delivered</span>
-                            </div>
-                            <div class="booking-item">
-                                <div class="booking-info"><h4>Hydroponic System</h4><div class="booking-meta">Mike Brown • 1 system</div></div>
-                                <span class="booking-status status-pending">Processing</span>
-                            </div>
-                            <div class="booking-item">
-                                <div class="booking-info"><h4>Microgreens Kit</h4><div class="booking-meta">Sarah Wilson • 3 kits</div></div>
-                                <span class="booking-status status-cancelled">Cancelled</span>
-                            </div>
-                            <div class="booking-item">
-                                <div class="booking-info"><h4>Veg Starter Kit</h4><div class="booking-meta">Alex Chen • 2 kits</div></div>
-                                <span class="booking-status status-active">Shipped</span>
-                            </div>
+                            <div class="booking-item"><div class="booking-info"><h4>Rooftop Salad Kit</h4><div class="booking-meta">John Doe • #ORD-3421</div></div><span class="booking-status status-active">Shipped</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>Herb Lover Kit</h4><div class="booking-meta">Jane Smith • #ORD-3419</div></div><span class="booking-status status-active">Delivered</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>Hydroponic System</h4><div class="booking-meta">Mike Brown • #ORD-3415</div></div><span class="booking-status status-pending">Processing</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>Microgreens Kit</h4><div class="booking-meta">Sarah Wilson • #ORD-3402</div></div><span class="booking-status status-cancelled">Cancelled</span></div>
+                            <div class="booking-item"><div class="booking-info"><h4>Compost Starter</h4><div class="booking-meta">Alex Chen • #ORD-3390</div></div><span class="booking-status status-active">Delivered</span></div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Messages & Notifications -->
-            <section id="messages" style="margin-top:30px;">
-                <div class="dashboard-grid">
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <h3>Recent Messages</h3>
-                            <a href="#">View All <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        <div class="card-body">
-                            <div class="message-item">
-                                <div class="message-avatar">JD</div>
-                                <div class="message-content">
-                                    <div class="message-header"><span class="message-sender">John Doe</span><span class="message-time">5 min ago</span></div>
-                                    <div class="message-text">Question about hydroponic setup...</div>
-                                </div>
-                            </div>
-                            <div class="message-item">
-                                <div class="message-avatar">AS</div>
-                                <div class="message-content">
-                                    <div class="message-header"><span class="message-sender">Alice Smith</span><span class="message-time">2 hours ago</span></div>
-                                    <div class="message-text">When is the next workshop?</div>
-                                </div>
-                            </div>
-                            <div class="message-item">
-                                <div class="message-avatar">RJ</div>
-                                <div class="message-content">
-                                    <div class="message-header"><span class="message-sender">Robert Johnson</span><span class="message-time">Yesterday</span></div>
-                                    <div class="message-text">My tomatoes are thriving! Thanks!</div>
-                                </div>
-                            </div>
-                            <div class="message-item">
-                                <div class="message-avatar">EM</div>
-                                <div class="message-content">
-                                    <div class="message-header"><span class="message-sender">Emma Martinez</span><span class="message-time">Yesterday</span></div>
-                                    <div class="message-text">Do you have organic seeds available?</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dashboard-card" id="notifications">
-                        <div class="card-header">
-                            <h3>Notifications</h3>
-                            <a href="#">Mark all read</a>
-                        </div>
-                        <div class="card-body">
-                            <div class="message-item">
-                                <div class="message-avatar" style="background-color:rgba(85,107,47,0.2);color:var(--olive);"><i class="fas fa-seedling"></i></div>
-                                <div class="message-content">
-                                    <div class="message-header"><span class="message-sender">New Order</span><span class="message-time">10 min ago</span></div>
-                                    <div class="message-text">John Doe ordered Rooftop Salad Kit</div>
-                                </div>
-                            </div>
-                            <div class="message-item">
-                                <div class="message-avatar" style="background-color:rgba(239,68,68,0.2);color:#ef4444;"><i class="fas fa-exclamation"></i></div>
-                                <div class="message-content">
-                                    <div class="message-header"><span class="message-sender">Low Stock Alert</span><span class="message-time">1 hour ago</span></div>
-                                    <div class="message-text">Microgreens Kit: 7 units left</div>
-                                </div>
-                            </div>
-                            <div class="message-item">
-                                <div class="message-avatar" style="background-color:rgba(16,185,129,0.2);color:#10b981;"><i class="fas fa-check"></i></div>
-                                <div class="message-content">
-                                    <div class="message-header"><span class="message-sender">Payment Received</span><span class="message-time">3 hours ago</span></div>
-                                    <div class="message-text">$128.50 from Jane Smith</div>
-                                </div>
-                            </div>
-                            <div class="message-item">
-                                <div class="message-avatar" style="background-color:rgba(85,107,47,0.2);color:var(--olive);"><i class="fas fa-star"></i></div>
-                                <div class="message-content">
-                                    <div class="message-header"><span class="message-sender">New Review</span><span class="message-time">5 hours ago</span></div>
-                                    <div class="message-text">5-star review from Mike Brown</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Reports -->
-            <section id="reports" style="margin-top:30px;">
+            <!-- Content Section -->
+            <div id="section-content" class="admin-section">
                 <div class="dashboard-card">
-                    <div class="card-header">
-                        <h3>Harvest Reports & Analytics</h3>
-                        <a href="#">Generate Report <i class="fas fa-download"></i></a>
+                    <div class="card-header"><h3>📱 Manage Content</h3><a href="#">+ New Post</a></div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead><tr><th>Title</th><th>Type</th><th>Status</th><th>Last Updated</th><th>Actions</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Summer Gardening Guide</td><td>Blog</td><td><span class="booking-status status-active">Published</span></td><td>Jun 1, 2026</td><td><button class="action-btn"><i class="fas fa-edit"></i></button></td></tr>
+                                    <tr><td>Hydroponics Workshop</td><td>Event</td><td><span class="booking-status status-active">Published</span></td><td>May 28, 2026</td><td><button class="action-btn"><i class="fas fa-edit"></i></button></td></tr>
+                                    <tr><td>New Kit Launch</td><td>Announcement</td><td><span class="booking-status status-pending">Draft</span></td><td>Jun 5, 2026</td><td><button class="action-btn"><i class="fas fa-edit"></i></button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Messages Section (full) -->
+            <div id="section-messages" class="admin-section">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card full-width-card">
+                        <div class="card-header"><h3>💬 All Messages</h3><a href="#">Compose</a></div>
+                        <div class="card-body">
+                            <div class="message-item"><div class="message-avatar">JD</div><div class="message-content"><div class="message-header"><span class="message-sender">John Doe</span><span class="message-time">5 min ago</span></div><div class="message-text">Question about hydroponic setup – can I use tap water?</div></div></div>
+                            <div class="message-item"><div class="message-avatar">AS</div><div class="message-content"><div class="message-header"><span class="message-sender">Alice Smith</span><span class="message-time">2 hours ago</span></div><div class="message-text">When is the next workshop? I'd like to register.</div></div></div>
+                            <div class="message-item"><div class="message-avatar">RJ</div><div class="message-content"><div class="message-header"><span class="message-sender">Robert Johnson</span><span class="message-time">Yesterday</span></div><div class="message-text">My tomatoes are thriving! Thanks for the tips.</div></div></div>
+                            <div class="message-item"><div class="message-avatar">EM</div><div class="message-content"><div class="message-header"><span class="message-sender">Emma Martinez</span><span class="message-time">Yesterday</span></div><div class="message-text">Do you have organic seeds available for the herb kit?</div></div></div>
+                            <div class="message-item"><div class="message-avatar">DK</div><div class="message-content"><div class="message-header"><span class="message-sender">David Kim</span><span class="message-time">2 days ago</span></div><div class="message-text">My microgreens kit arrived damaged. Can I get a replacement?</div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Section (full) -->
+            <div id="section-reports" class="admin-section">
+                <div class="dashboard-card">
+                    <div class="card-header"><h3>📊 Harvest Reports & Analytics</h3><a href="#">Generate Full Report</a></div>
                     <div class="card-body">
                         <div class="reports-grid">
-                            <div class="report-card"><h4>Monthly Revenue</h4><div class="report-value">$12,543</div></div>
-                            <div class="report-card"><h4>Total Kits Sold</h4><div class="report-value">1,234</div></div>
-                            <div class="report-card"><h4>Avg. Order Value</h4><div class="report-value">$42.50</div></div>
-                            <div class="report-card"><h4>New Growers</h4><div class="report-value">345</div></div>
-                            <div class="report-card"><h4>Workshop Attendance</h4><div class="report-value">78%</div></div>
-                            <div class="report-card"><h4>Grower Satisfaction</h4><div class="report-value">4.8/5.0</div></div>
-                            <div class="report-card"><h4>Most Popular Kit</h4><div class="report-value">Herb Lover</div></div>
-                            <div class="report-card"><h4>Returning Customers</h4><div class="report-value">35%</div></div>
-                            <div class="report-card"><h4>Peak Order Time</h4><div class="report-value">Weekends</div></div>
+                            <div class="report-card"><h4>Monthly Revenue</h4><div class="report-value">$12,543</div><span>↑ 23%</span></div>
+                            <div class="report-card"><h4>Total Kits Sold</h4><div class="report-value">1,234</div><span>↑ 8%</span></div>
+                            <div class="report-card"><h4>Avg. Order Value</h4><div class="report-value">$42.50</div><span>↑ 3%</span></div>
+                            <div class="report-card"><h4>New Growers</h4><div class="report-value">345</div><span>↑ 15%</span></div>
+                            <div class="report-card"><h4>Workshop Attendance</h4><div class="report-value">78%</div><span>↑ 5%</span></div>
+                            <div class="report-card"><h4>Grower Satisfaction</h4><div class="report-value">4.8/5.0</div><span>-</span></div>
+                            <div class="report-card"><h4>Most Popular Kit</h4><div class="report-value">Herb Lover</div><span>28% of sales</span></div>
+                            <div class="report-card"><h4>Returning Customers</h4><div class="report-value">35%</div><span>↑ 2%</span></div>
+                            <div class="report-card"><h4>Peak Order Time</h4><div class="report-value">Weekends</div><span>Sat/Sun</span></div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Settings -->
-            <section id="settings" style="margin-top:30px; margin-bottom:30px;">
+            <!-- Settings Section (full) -->
+            <div id="section-settings" class="admin-section">
                 <div class="dashboard-card">
-                    <div class="card-header">
-                        <h3>Farm Settings & Configuration</h3>
-                        <a href="#">Save Changes</a>
-                    </div>
+                    <div class="card-header"><h3>⚙️ Farm Settings & Configuration</h3><a href="#">Save Changes</a></div>
                     <div class="card-body">
                         <div class="settings-grid">
-                            <div class="setting-item">
-                                <div class="setting-info"><h4>Maintenance Mode</h4><p>Enable maintenance mode</p></div>
-                                <div class="toggle-switch"></div>
-                            </div>
-                            <div class="setting-item">
-                                <div class="setting-info"><h4>Email Notifications</h4><p>Send order alerts</p></div>
-                                <div class="toggle-switch active"></div>
-                            </div>
-                            <div class="setting-item">
-                                <div class="setting-info"><h4>Auto-approve Orders</h4><p>Automatically approve</p></div>
-                                <div class="toggle-switch"></div>
-                            </div>
-                            <div class="setting-item">
-                                <div class="setting-info"><h4>Dark Mode Default</h4><p>Set dark theme</p></div>
-                                <div class="toggle-switch active"></div>
-                            </div>
-                            <div class="setting-item">
-                                <div class="setting-info"><h4>Workshop Reminders</h4><p>Schedule alerts</p></div>
-                                <div class="toggle-switch active"></div>
-                            </div>
-                            <div class="setting-item">
-                                <div class="setting-info"><h4>Customer Reviews</h4><p>Auto-publish reviews</p></div>
-                                <div class="toggle-switch"></div>
-                            </div>
-                            <div class="setting-item">
-                                <div class="setting-info"><h4>Two-Factor Auth</h4><p>Require 2FA for admin</p></div>
-                                <div class="toggle-switch active"></div>
-                            </div>
-                            <div class="setting-item">
-                                <div class="setting-info"><h4>Analytics Tracking</h4><p>Detailed usage</p></div>
-                                <div class="toggle-switch active"></div>
-                            </div>
+                            <div class="setting-item"><div class="setting-info"><h4>Maintenance Mode</h4><p>Enable maintenance mode</p></div><div class="toggle-switch"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Email Notifications</h4><p>Send order alerts</p></div><div class="toggle-switch active"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Auto-approve Orders</h4><p>Automatically approve</p></div><div class="toggle-switch"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Dark Mode Default</h4><p>Set dark theme</p></div><div class="toggle-switch active"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Workshop Reminders</h4><p>Schedule alerts</p></div><div class="toggle-switch active"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Customer Reviews</h4><p>Auto-publish reviews</p></div><div class="toggle-switch"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Two-Factor Auth</h4><p>Require 2FA for admin</p></div><div class="toggle-switch active"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Analytics Tracking</h4><p>Detailed usage</p></div><div class="toggle-switch active"></div></div>
+                            <div class="setting-item"><div class="setting-info"><h4>Default Language</h4><p>English (US)</p></div><i class="fas fa-chevron-right" style="color:var(--olive);"></i></div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </section>
+            </div>
+
+        </section> <!-- end dashboard-content -->
         
         <!-- Back to Top Button -->
         <button class="back-to-top" id="backToTop">
@@ -1674,7 +1515,12 @@
         </button>
         
         <!-- Dashboard Footer -->
-       
+        <footer class="dashboard-footer">
+            <div>© 2026 Urban Farming – concrete harvest. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a>
+            </div>
+        </footer>
     </main>
 
     <!-- Logout Confirmation Modal -->
@@ -1708,13 +1554,62 @@
             const cancelLogout = document.getElementById('cancelLogout');
             const confirmLogout = document.getElementById('confirmLogout');
             const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('section[id]');
+            
+            // Sections
+            const sections = {
+                overview: document.getElementById('section-overview'),
+                users: document.getElementById('section-users'),
+                bookings: document.getElementById('section-bookings'),
+                content: document.getElementById('section-content'),
+                messages: document.getElementById('section-messages'),
+                reports: document.getElementById('section-reports'),
+                settings: document.getElementById('section-settings')
+            };
+
+            // ===== SECTION SWITCHING =====
+            function activateSection(sectionId) {
+                // Hide all sections
+                Object.values(sections).forEach(sec => {
+                    if (sec) sec.classList.remove('active-section');
+                });
+                // Show selected
+                if (sections[sectionId]) sections[sectionId].classList.add('active-section');
+                
+                // Update nav active state
+                navLinks.forEach(link => {
+                    const data = link.getAttribute('data-section');
+                    if (data === sectionId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                // Close mobile sidebar after selection
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    body.style.overflow = 'auto';
+                    const icon = mobileToggle?.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            }
+
+            // Add click handlers to nav buttons
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('data-section');
+                    if (sectionId) activateSection(sectionId);
+                });
+            });
 
             // Theme Toggle
             themeToggle.addEventListener('click', () => {
                 body.classList.toggle('light-theme');
-                
-                // Update icon
                 const icon = themeToggle.querySelector('i');
                 if (body.classList.contains('light-theme')) {
                     icon.classList.remove('fa-sun');
@@ -1723,8 +1618,6 @@
                     icon.classList.remove('fa-moon');
                     icon.classList.add('fa-sun');
                 }
-                
-                // Save preference
                 localStorage.setItem('admin-theme', body.classList.contains('light-theme') ? 'light' : 'dark');
             });
 
@@ -1736,21 +1629,19 @@
                         rtlBtn.querySelector('i').style.transform = 'rotate(180deg)';
                     }
                     localStorage.setItem('admin-rtl', 'true');
-                    
-                    // Adjust main content margin for desktop
-                    if (window.innerWidth >= 1024) {
-                        mainContent.style.marginRight = '280px';
-                        mainContent.style.marginLeft = '0';
-                    }
                 } else {
                     body.classList.remove('rtl');
                     if (rtlBtn?.querySelector('i')) {
                         rtlBtn.querySelector('i').style.transform = 'rotate(0deg)';
                     }
                     localStorage.setItem('admin-rtl', 'false');
-                    
-                    // Adjust main content margin for desktop
-                    if (window.innerWidth >= 1024) {
+                }
+                // Adjust margins after RTL change
+                if (window.innerWidth >= 1024) {
+                    if (isRtl) {
+                        mainContent.style.marginRight = '280px';
+                        mainContent.style.marginLeft = '0';
+                    } else {
                         mainContent.style.marginLeft = '280px';
                         mainContent.style.marginRight = '0';
                     }
@@ -1761,15 +1652,6 @@
                 rtlBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     setRTL(!body.classList.contains('rtl'));
-                    
-                    // Close sidebar if open when switching RTL
-                    if (sidebar.classList.contains('active')) {
-                        sidebar.classList.remove('active');
-                        overlay.classList.remove('active');
-                        body.style.overflow = 'auto';
-                        mobileToggle.querySelector('i').classList.remove('fa-times');
-                        mobileToggle.querySelector('i').classList.add('fa-bars');
-                    }
                 });
             }
 
@@ -1778,8 +1660,6 @@
                 sidebar.classList.toggle('active');
                 overlay.classList.toggle('active');
                 body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : 'auto';
-                
-                // Update icon
                 const icon = mobileToggle.querySelector('i');
                 if (sidebar.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
@@ -1790,41 +1670,12 @@
                 }
             });
 
-            // Close sidebar when clicking overlay
             overlay.addEventListener('click', () => {
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
                 body.style.overflow = 'auto';
                 mobileToggle.querySelector('i').classList.remove('fa-times');
                 mobileToggle.querySelector('i').classList.add('fa-bars');
-            });
-
-            // Close sidebar when clicking a nav link on mobile
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    
-                    // Get the target section
-                    const targetId = link.getAttribute('href');
-                    if (targetId && targetId !== '#') {
-                        const targetSection = document.querySelector(targetId);
-                        if (targetSection) {
-                            targetSection.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    }
-                    
-                    // Set active state
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
-                    
-                    if (window.innerWidth < 1024) {
-                        sidebar.classList.remove('active');
-                        overlay.classList.remove('active');
-                        body.style.overflow = 'auto';
-                        mobileToggle.querySelector('i').classList.remove('fa-times');
-                        mobileToggle.querySelector('i').classList.add('fa-bars');
-                    }
-                });
             });
 
             // Logout functionality
@@ -1834,74 +1685,39 @@
                     logoutModal.classList.add('active');
                 });
             }
-
             if (cancelLogout) {
-                cancelLogout.addEventListener('click', function() {
-                    logoutModal.classList.remove('active');
-                });
+                cancelLogout.addEventListener('click', () => logoutModal.classList.remove('active'));
             }
-
             if (confirmLogout) {
-                confirmLogout.addEventListener('click', function() {
-                    window.location.href = 'login.html';
-                });
+                confirmLogout.addEventListener('click', () => window.location.href = 'login.html');
             }
-
-            // Close modal when clicking outside
-            window.addEventListener('click', function(e) {
-                if (e.target === logoutModal) {
-                    logoutModal.classList.remove('active');
-                }
+            window.addEventListener('click', (e) => {
+                if (e.target === logoutModal) logoutModal.classList.remove('active');
             });
 
-            // Back to top functionality
+            // Back to top
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
                     backToTop.classList.add('visible');
                 } else {
                     backToTop.classList.remove('visible');
                 }
-                
-                // Highlight active section in sidebar
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 100;
-                    const sectionHeight = section.clientHeight;
-                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    const href = link.getAttribute('href').replace('#', '');
-                    if (href === current) {
-                        link.classList.add('active');
-                    }
-                });
             });
-
             backToTop.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
             // Load saved preferences
             document.addEventListener('DOMContentLoaded', function() {
-                // Load theme
                 const savedTheme = localStorage.getItem('admin-theme');
                 if (savedTheme === 'light') {
                     body.classList.add('light-theme');
                     if (themeToggle) {
-                        const icon = themeToggle.querySelector('i');
-                        icon?.classList.remove('fa-sun');
-                        icon?.classList.add('fa-moon');
+                        themeToggle.querySelector('i').classList.remove('fa-sun');
+                        themeToggle.querySelector('i').classList.add('fa-moon');
                     }
                 }
                 
-                // Load RTL
                 const savedRTL = localStorage.getItem('admin-rtl');
                 if (savedRTL === 'true') {
                     setRTL(true);
@@ -1909,27 +1725,19 @@
                     setRTL(false);
                 }
                 
-                // Set initial active nav based on scroll position
-                setTimeout(() => {
-                    window.dispatchEvent(new Event('scroll'));
-                }, 100);
+                // Activate default section (overview)
+                activateSection('overview');
             });
 
             // Handle window resize
             window.addEventListener('resize', () => {
                 const isRTL = body.classList.contains('rtl');
-                
                 if (window.innerWidth >= 1024) {
-                    // Desktop view
                     if (sidebar.classList.contains('active')) {
                         sidebar.classList.remove('active');
                         overlay.classList.remove('active');
                         body.style.overflow = 'auto';
-                        mobileToggle.querySelector('i').classList.remove('fa-times');
-                        mobileToggle.querySelector('i').classList.add('fa-bars');
                     }
-                    
-                    // Set correct margins for RTL/LTR
                     if (isRTL) {
                         mainContent.style.marginRight = '280px';
                         mainContent.style.marginLeft = '0';
@@ -1938,46 +1746,22 @@
                         mainContent.style.marginRight = '0';
                     }
                 } else {
-                    // Mobile view - reset margins
                     mainContent.style.marginLeft = '0';
                     mainContent.style.marginRight = '0';
                 }
             });
 
-            // Initialize on load
-            window.dispatchEvent(new Event('resize'));
-
-            // Notification buttons functionality
-            const notificationBtns = document.querySelectorAll('.header-action-btn');
-            notificationBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const badge = this.nextElementSibling;
-                    if (badge && badge.classList.contains('notification-badge')) {
-                        badge.textContent = '0';
-                        badge.style.opacity = '0.5';
-                    }
-                });
-            });
-
-            // Action buttons functionality
-            const actionButtons = document.querySelectorAll('.action-btn');
-            actionButtons.forEach(btn => {
+            // Action buttons (edit/delete)
+            document.querySelectorAll('.action-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const action = this.classList.contains('delete') ? 'delete' : 'edit';
-                    
-                    if (action === 'delete') {
-                        if (confirm('Are you sure you want to delete this item?')) {
+                    if (this.classList.contains('delete')) {
+                        if (confirm('Delete this item?')) {
                             const row = this.closest('tr');
-                            if (row) {
-                                row.style.opacity = '0.5';
-                                setTimeout(() => {
-                                    row.remove();
-                                }, 300);
-                            }
+                            if (row) row.remove();
                         }
                     } else {
-                        alert('Edit functionality would open a form here.');
+                        alert('Edit functionality would open a form.');
                     }
                 });
             });
@@ -1986,50 +1770,17 @@
             document.querySelectorAll('.toggle-switch').forEach(t => {
                 t.addEventListener('click', function(e) {
                     e.preventDefault();
-                    e.stopPropagation();
                     this.classList.toggle('active');
-                    
-                    // Show feedback
-                    const setting = this.closest('.setting-item');
-                    if (setting) {
-                        const settingName = setting.querySelector('h4')?.textContent;
-                        const isActive = this.classList.contains('active');
-                        console.log(`${settingName} toggled: ${isActive ? 'ON' : 'OFF'}`);
-                    }
                 });
             });
 
-            // Search functionality
-            const searchInput = document.querySelector('.search-bar input');
-            if (searchInput) {
-                searchInput.addEventListener('keyup', function(e) {
-                    if (e.key === 'Enter') {
-                        const query = this.value.trim();
-                        if (query) {
-                            alert(`Searching for: "${query}". Results would appear here.`);
-                            this.value = '';
-                        }
-                    }
-                });
-            }
-
-            // View all links
+            // "View all" links
             document.querySelectorAll('.card-header a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const text = this.textContent.trim();
-                    alert(`${text} functionality would open in a real app.`);
+                    alert('This would navigate to full list view.');
                 });
             });
-
-            // Generate report button
-            const reportBtn = document.querySelector('.card-header a[href="#"]');
-            if (reportBtn && reportBtn.textContent.includes('Generate')) {
-                reportBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    alert('Generating report... This would download a file in a real app.');
-                });
-            }
         })();
     </script>
 </body>

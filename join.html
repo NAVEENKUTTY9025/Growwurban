@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join · Urban Farming</title>
+    <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & VARIABLES (exactly matching login.html theme) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Light theme – matching login.html exactly */
+            --bg-primary: #FAFAFA;
+            --bg-secondary: #f0f0e8;
+            --text-main: #111111;
+            --text-heading: #111111;
+            --card-bg: #ffffff;
+            --border-light: #ddddd5;
+            --accent-green: #556B2F;
+            --accent-brown: #6D4C41;
+            --navbar-bg: #111111;
+            --olive: #556B2F;
+            --soil: #6D4C41;
+            --deep: #111111;
+            --smoke: #FAFAFA;
+            /* strength colors kept distinct but harmony */
+            --strength-weak: #dc2626;
+            --strength-medium: #f59e0b;
+            --strength-strong: #556B2F;  /* olive variant */
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #111111;
+            --bg-secondary: #1e1e1e;
+            --text-main: #EAEAEA;
+            --text-heading: #FAFAFA;
+            --card-bg: #222222;
+            --border-light: #3a3a3a;
+            --accent-green: #6b8c3e;
+            --accent-brown: #8b6b5a;
+            --navbar-bg: #000000;
+            --olive: #6b8c3e;
+            --soil: #8b6b5a;
+            --deep: #ffffff;
+            --smoke: #111111;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.3;           /* tightened */
+            height: 100vh;
+            overflow: hidden;            /* NO BODY SCROLL */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* main wrapper – no scroll anywhere */
+        .join-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1rem;
+            max-height: 100vh;
+        }
+
+        /* ----- compact card (matching login compactness) ----- */
+        .auth-card {
+            background-color: var(--card-bg);
+            border-radius: 2.5rem;          /* login uses 2.5rem */
+            border: 1px solid rgba(85,107,47,0.25);
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.4);
+            width: 100%;
+            max-width: 460px;              /* same as login */
+            padding: 1.2rem 1.8rem 1.8rem;  /* tightened padding */
+            margin: 0 auto;
+            overflow: hidden;              /* no internal scroll */
+            display: block;
+        }
+
+        /* logo strip – exactly as login */
+        .logo-black-strip {
+            background-color: #000000;
+            border-radius: 2.5rem 2.5rem 1.5rem 1.5rem;
+            padding: 0.8rem 1.5rem;
+            margin-bottom: 0.8rem;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+            border: 1px solid var(--olive);
+        }
+
+        .logo-uniform {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+        
+        .logo-uniform .logo-icon {
+            width: 2.6rem;
+            height: 2.6rem;
+            background-color: rgba(255,255,255,0.15);
+            border-radius: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--olive);
+        }
+        
+        .logo-uniform .logo-icon i {
+            color: var(--olive);
+            font-size: 1.6rem;
+        }
+        
+        .logo-uniform .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: #FFFFFF !important;
+            line-height: 1.2;
+        }
+        
+        .logo-uniform .tagline {
+            font-size: 0.6rem;
+            color: #dddddd;
+            display: block;
+            margin-top: -0.2rem;
+            font-weight: 500;
+        }
+
+        /* button bar – matching login */
+        .button-bar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.6rem;
+            max-width: 460px;
+            margin: 0 auto 0.4rem;
+            width: 100%;
+        }
+        
+        .control-bubble {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border: 2px solid var(--olive);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--olive);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+        
+        .control-bubble:hover {
+            background-color: var(--olive);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* tabs – exactly as login style */
+        .tab-buttons {
+            display: flex;
+            gap: 0.8rem;
+            border-bottom: 2px solid var(--border-light);
+            margin: 0.2rem 0 1rem;
+        }
+        
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.4rem 0.6rem 0.3rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            opacity: 0.6;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .tab-btn.active {
+            opacity: 1;
+            color: var(--olive);
+            border-bottom-color: var(--olive);
+        }
+
+        /* form elements – compact & matching login */
+        .input-group {
+            margin-bottom: 0.9rem;
+            position: relative;
+        }
+        
+        .input-label {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.2rem;
+            color: var(--text-main);
+            opacity: 0.8;
+        }
+        
+        .input-field-wrapper {
+            position: relative;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--olive);
+            font-size: 0.8rem;
+            opacity: 0.8;
+            z-index: 2;
+        }
+        
+        .input-field {
+            width: 100%;
+            background-color: var(--bg-primary);
+            border: 2px solid var(--border-light);
+            border-radius: 9999px;
+            padding: 0.55rem 1rem 0.55rem 2.3rem;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            transition: 0.2s;
+            font-size: 0.8rem;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--olive);
+            box-shadow: 0 0 0 3px rgba(85,107,47,0.2);
+        }
+        
+        .input-field::placeholder {
+            color: var(--text-main);
+            opacity: 0.4;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.6;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .password-toggle:hover {
+            color: var(--olive);
+            opacity: 1;
+        }
+
+        /* password strength – subtle but matching login aesthetics */
+        .strength-container {
+            margin: 0.1rem 0 0.5rem;
+        }
+        
+        .strength-bar-bg {
+            height: 5px;
+            background: var(--border-light);
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-bottom: 0.2rem;
+        }
+        
+        #strength-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--olive);
+            transition: width 0.3s, background-color 0.3s;
+        }
+        
+        #strength-text {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-main);
+            opacity: 0.7;
+        }
+
+        /* terms checkbox – matching theme */
+        .terms-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.6rem 0 0.9rem;
+        }
+        
+        .terms-checkbox input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
+            accent-color: var(--olive);
+        }
+        
+        .terms-checkbox label {
+            font-size: 0.75rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+        
+        .terms-checkbox a {
+            color: var(--olive);
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* buttons – matching login exactly */
+        .btn-primary {
+            background-color: var(--olive);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .btn-primary:hover {
+            background-color: white;
+            color: var(--deep);
+            border: 2px solid var(--olive);
+            padding: calc(0.6rem - 2px) calc(1.2rem - 2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--olive);
+            background: transparent;
+            color: var(--olive);
+            padding: 0.45rem 1rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.75rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--olive);
+            color: white;
+        }
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-top: 0.6rem;
+        }
+
+        /* login redirect – exactly matching login's create account section */
+        .login-redirect {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--border-light);
+            font-size: 0.75rem;
+            color: var(--text-main);
+        }
+        
+        .login-redirect a {
+            color: var(--olive);
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: 0.2s;
+        }
+        
+        .login-redirect a:hover {
+            color: var(--soil);
+        }
+
+        /* heading styles – matching login */
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.1rem;
+            line-height: 1.2;
+            color: var(--text-heading);
+        }
+
+        .subhead {
+            margin-bottom: 0.8rem;
+            font-size: 0.75rem;
+            opacity: 0.7;
+            color: var(--text-main);
+        }
+
+        /* toast – matching login */
+        .toast-container {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 9999;
+        }
+        
+        .toast {
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--olive);
+            padding: 0.7rem 1.2rem;
+            border-radius: 9999px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-main);
+            animation: slideIn 0.3s ease;
+            border: 1px solid rgba(85,107,47,0.2);
+        }
+
+        /* two column name fields – tight */
+        .name-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        /* animations */
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* responsive tweaks */
+        @media (max-width: 480px) {
+            .auth-card { padding: 1rem 1.2rem 1.5rem; }
+            .logo-black-strip { padding: 0.6rem 1rem; }
+            .logo-uniform .logo-text { font-size: 1.3rem; }
+            .control-bubble { width: 36px; height: 36px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="join-wrapper">
+        <!-- Theme/RTL Buttons (exactly as login) -->
+        <div class="button-bar">
+            <button class="control-bubble" id="rtl-toggle" title="RTL/LTR">
+                <i class="fas fa-right-left"></i>
+            </button>
+            <button class="control-bubble" id="theme-toggle" title="Toggle theme">
+                <i class="fas fa-circle-half-stroke" id="theme-icon"></i>
+            </button>
+        </div>
+
+        <!-- Register Card – matching login color scheme -->
+        <div class="auth-card">
+            <!-- Logo strip (same as login) -->
+            <div class="logo-black-strip">
+                <a href="index.html" class="logo-uniform">
+                    <div class="logo-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div>
+                        <div class="logo-text">Urban Farming</div>
+                        <span class="tagline">concrete harvest</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Tabs (only register active, sign in styled but disabled) -->
+            <div class="tab-buttons">
+                <button class="tab-btn" id="tab-login" onclick="window.location.href='login.html'" style="cursor: pointer; opacity:0.6;">Sign In</button>
+                <button class="tab-btn active" id="tab-register">Join Now</button>
+            </div>
+
+            <!-- Register Form (tight, with login colors) -->
+            <div id="register-form" class="tab-content active">
+                <h3>Start growing</h3>
+                <p class="subhead">Create your account.</p>
+
+                <form onsubmit="handleAuth(event, 'register')">
+                    <!-- Name row -->
+                    <div class="name-row">
+                        <div class="input-group">
+                            <label class="input-label">First</label>
+                            <div class="input-field-wrapper">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" class="input-field" id="first-name" placeholder="First" value="Maya" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Last</label>
+                            <div class="input-field-wrapper">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" class="input-field" id="last-name" placeholder="Last" value="Chen" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="input-group">
+                        <label class="input-label">Email</label>
+                        <div class="input-field-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" class="input-field" id="email" placeholder="maya@urbanfarm.com" value="maya@urbanfarm.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Password + Confirm -->
+                    <div class="name-row">
+                        <div class="input-group">
+                            <label class="input-label">Password</label>
+                            <div class="input-field-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" class="input-field" id="reg-password" placeholder="Password" value="Password123!" required oninput="updateStrength()">
+                                <button type="button" class="password-toggle" onclick="togglePassword('reg-password', this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Confirm</label>
+                            <div class="input-field-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" class="input-field" id="confirm-password" placeholder="Confirm" value="Password123!" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('confirm-password', this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password strength (themed) -->
+                    <div class="strength-container">
+                        <div class="strength-bar-bg">
+                            <div id="strength-bar" style="width: 85%; background-color: var(--olive);"></div>
+                        </div>
+                        <div id="strength-text" style="color: var(--olive);">strong · good to go!</div>
+                    </div>
+
+                    <!-- Terms checkbox -->
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="terms" checked required>
+                        <label for="terms">I agree to the <a href="#">terms & conditions</a></label>
+                    </div>
+
+                    <!-- Join button -->
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-leaf"></i> Create Account
+                    </button>
+
+                    <!-- Social (optional but matches login) -->
+                    <div style="margin-top: 1rem;">
+                        <p style="text-align: center; font-size: 0.6rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; opacity:0.7;">Or sign up with</p>
+                        <div class="social-buttons">
+                            <button type="button" class="btn-outline"><i class="fab fa-google"></i> Google</button>
+                            <button type="button" class="btn-outline"><i class="fab fa-facebook-f"></i> Facebook</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Login link (like login's "Create account" but reverse) -->
+                <div class="login-redirect">
+                    Already have an account? <a href="login.html">Sign in here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        (function() {
+            // ========== THEME / RTL (exactly as login) ==========
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const rtlToggle = document.getElementById('rtl-toggle');
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+            themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+
+            themeToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme');
+                const next = current === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+                themeIcon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+            });
+
+            rtlToggle.addEventListener('click', () => {
+                const dir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+                html.setAttribute('dir', dir);
+            });
+
+            // ========== PASSWORD TOGGLE ==========
+            window.togglePassword = function(inputId, btn) {
+                const input = document.getElementById(inputId);
+                const icon = btn.querySelector('i');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.className = 'fas fa-eye-slash';
+                } else {
+                    input.type = 'password';
+                    icon.className = 'fas fa-eye';
+                }
+            };
+
+            // ========== STRENGTH METER (with olive theme) ==========
+            window.updateStrength = function() {
+                const pass = document.getElementById('reg-password').value;
+                const bar = document.getElementById('strength-bar');
+                const text = document.getElementById('strength-text');
+                
+                let strength = 0;
+                if (pass.length > 0) {
+                    if (pass.length >= 8) strength += 25;
+                    else if (pass.length >= 6) strength += 15;
+                    else strength += 5;
+                    
+                    if (/[0-9]/.test(pass)) strength += 25;
+                    if (/[A-Z]/.test(pass)) strength += 25;
+                    if (/[^A-Za-z0-9]/.test(pass)) strength += 25;
+                }
+                strength = Math.min(strength, 100);
+                
+                let message = '', color = '';
+                if (strength < 30) {
+                    message = 'weak · add numbers & symbols';
+                    color = '#dc2626'; // keep distinct but not breaking theme
+                } else if (strength < 60) {
+                    message = 'medium · getting there';
+                    color = '#f59e0b';
+                } else {
+                    message = 'strong · good to go!';
+                    color = 'var(--olive)';  // use olive for strong
+                }
+                
+                bar.style.width = strength + '%';
+                bar.style.backgroundColor = color;
+                text.style.color = color;
+                text.innerText = message;
+            };
+
+            // ========== TOAST ==========
+            function showToast(msg) {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerText = msg;
+                container.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 2800);
+            }
+
+            // ========== REGISTER HANDLER ==========
+            window.handleAuth = function(e, type) {
+                e.preventDefault();
+                
+                const pass = document.getElementById('reg-password')?.value;
+                const confirm = document.getElementById('confirm-password')?.value;
+                
+                if (pass !== confirm) {
+                    showToast('❌ Passwords do not match');
+                    return;
+                }
+                
+                const termsCheck = document.getElementById('terms');
+                if (!termsCheck.checked) {
+                    showToast('Please accept the terms');
+                    return;
+                }
+
+                const btn = e.target.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> creating...';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    showToast('✓ Account created! Redirecting...');
+                    setTimeout(() => {
+                        window.location.href = 'client.html';
+                    }, 900);
+                }, 1000);
+            };
+
+            // initial strength
+            window.addEventListener('load', function() {
+                if (document.getElementById('reg-password')) {
+                    updateStrength();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
