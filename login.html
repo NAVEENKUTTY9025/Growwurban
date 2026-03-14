@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" data-theme="light" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Login | Urban Farming</title>
     <link rel="icon" type="image/jpeg" href="/images/growwpark_logo.jpg" />
     <!-- Font Awesome 6 -->
@@ -50,24 +50,23 @@
             transition: background-color 0.3s, color 0.3s;
             line-height: 1.5;
             
-            /* --- DESKTOP: ABSOLUTELY NO SCROLL, PERFECT CENTERING --- */
-            height: 100vh;
-            overflow: hidden;
+            /* Base mobile-first: allow scroll, card centered */
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 0 1rem;
+            padding: 4.5rem 1rem 2rem;  /* extra top padding for fixed buttons */
             margin: 0;
+            position: relative;
         }
 
-        /* tablet / mobile: allow scroll, but we keep desktop scroll-free */
-        @media (max-width: 1024px) {
+        /* desktop: perfect centering, no body scroll */
+        @media (min-width: 1025px) {
             body {
-                height: auto;
-                min-height: 100vh;
-                overflow-y: auto;
-                padding: 2rem 1rem;
-                align-items: flex-start;
+                height: 100vh;
+                overflow: hidden;
+                padding: 0 1rem;  /* buttons still fixed, no extra padding needed */
             }
         }
 
@@ -79,7 +78,7 @@
 
         a { text-decoration: none; }
 
-        /* --- TOP RIGHT CONTROLS (neat, fixed position) --- */
+        /* --- TOP RIGHT CONTROLS — always fixed, beautifully outside card --- */
         .top-right-controls {
             position: fixed;
             top: 1.5rem;
@@ -109,17 +108,58 @@
             color: white;
             transform: scale(1.05);
         }
-        /* adjust for mobile so they don't overlap */
+
+        /* Mobile fine-tuning: buttons stay outside with clear distance */
         @media (max-width: 600px) {
             .top-right-controls {
                 top: 1rem;
+                right: 1.5rem;     /* keeps them away from card edge */
+                gap: 0.7rem;
+            }
+            .control-bubble {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+                background-color: var(--card-bg);
+                border-width: 2px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .top-right-controls {
                 right: 1rem;
-                gap: 0.5rem;
+                top: 0.8rem;
             }
             .control-bubble {
                 width: 40px;
                 height: 40px;
-                font-size: 1rem;
+            }
+        }
+
+        /* --- CARD styling — perfectly centered, never touches buttons --- */
+        .auth-card {
+            background-color: var(--card-bg);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(85,107,47,0.25);
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.4);
+            width: 100%;
+            max-width: 460px;
+            padding: 1.2rem 1.8rem 1.8rem;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin: 0 auto;  /* centers within flex parent */
+            
+            /* desktop max-height to avoid scroll if possible */
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+        }
+        
+        /* on mobile, card can take full natural height */
+        @media (max-width: 1024px) {
+            .auth-card {
+                max-height: none;
+                overflow-y: visible;
+                padding: 1.2rem;
             }
         }
 
@@ -178,31 +218,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* main card – TIGHT, NO SCROLL */
-        .auth-card {
-            background-color: var(--card-bg);
-            border-radius: 2.5rem;
-            border: 1px solid rgba(85,107,47,0.25);
-            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.4);
-            width: 100%;
-            max-width: 460px;
-            padding: 1.2rem 1.8rem 1.8rem;
-            transition: background-color 0.3s, box-shadow 0.3s;
-            margin: 0 auto;
-            
-            max-height: calc(100vh - 70px);
-            overflow-y: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        @media (max-width: 1024px) {
-            .auth-card {
-                max-height: none;
-                overflow-y: visible;
-                padding: 1.2rem;
-            }
-        }
-
         /* tabs - compact */
         .tab-buttons {
             display: flex;
@@ -229,7 +244,7 @@
             border-bottom-color: var(--olive);
         }
 
-        /* form elements - compact */
+        /* form elements */
         .input-group {
             margin-bottom: 0.9rem;
             position: relative;
@@ -292,12 +307,14 @@
         }
         .password-toggle:hover { color: var(--olive); opacity: 1; }
 
-        /* --- FIXED: REMEMBER & FORGOT neatly aligned --- */
+        /* remember & forgot row */
         .row-flex {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin: 0.4rem 0 0.8rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
         .remember-wrapper {
             display: flex;
@@ -406,7 +423,7 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* CREATE ACCOUNT BUTTON - VISIBLE & NEAT */
+        /* CREATE ACCOUNT BUTTON */
         .create-btn-wrapper {
             margin-top: 1rem;
             text-align: center;
@@ -438,7 +455,7 @@
             box-shadow: 0 8px 18px rgba(85,107,47,0.3);
         }
 
-        /* small adjustments */
+        /* small adjustments inside card */
         @media (max-width: 600px) {
             .auth-card { padding: 1rem; }
             .logo-black-strip { padding: 0.6rem 1rem; }
@@ -451,7 +468,7 @@
     </style>
 </head>
 <body>
-    <!-- TOP-RIGHT CONTROLS (fixed, neat) -->
+    <!-- TOP-RIGHT CONTROLS — perfectly outside, fixed position -->
     <div class="top-right-controls">
         <button class="control-bubble" id="rtl-toggle" title="RTL/LTR">
             <i class="fas fa-right-left"></i>
@@ -461,7 +478,7 @@
         </button>
     </div>
 
-    <!-- MAIN CARD (no button bar inside, just the card) -->
+    <!-- MAIN CARD — perfectly centered in all views -->
     <div class="auth-card">
         <!-- BLACK STRIP WITH WHITE LOGO -->
         <div class="logo-black-strip">
@@ -481,7 +498,7 @@
             <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Sign In</button>
         </div>
 
-        <!-- LOGIN FORM (active, with FIXED remember/forgot row) -->
+        <!-- LOGIN FORM -->
         <div id="login-form" class="tab-content active">
             <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.1rem;">Welcome back</h3>
             <p style="margin-bottom: 0.8rem; opacity: 0.7; font-size:0.75rem;">Enter your credentials</p>
@@ -506,7 +523,7 @@
                     </div>
                 </div>
 
-                <!-- FIXED ROW: remember + forgot straight and neat -->
+                <!-- remember + forgot row -->
                 <div class="row-flex">
                     <div class="remember-wrapper">
                         <input type="checkbox" id="remember">
@@ -536,7 +553,7 @@
             </div>
         </div>
 
-        <!-- Register hidden placeholder (kept for structure) -->
+        <!-- Register placeholder (unused) -->
         <div id="register-form" class="tab-content" style="display: none;"></div>
     </div>
 
@@ -544,7 +561,7 @@
     <div class="toast-container" id="toast-container"></div>
 
     <script>
-        // THEME & RTL (fixed top-right)
+        // THEME & RTL
         const html = document.documentElement;
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
