@@ -59,17 +59,52 @@
             background-color: var(--bg-primary);
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
-            line-height: 1.3;           /* tightened */
-            height: 100vh;
-            overflow: hidden;            /* NO BODY SCROLL */
+            line-height: 1.3;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0;
+            padding: 1rem;
             margin: 0;
+            position: relative;
         }
 
-        /* main wrapper – no scroll anywhere */
+        /* ----- FIXED TOP-RIGHT CONTROL BUTTONS (absolutely positioned) ----- */
+        .control-bar {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            gap: 0.6rem;
+            z-index: 1000;
+        }
+        
+        .control-bubble {
+            width: 44px;
+            height: 44px;
+            background-color: var(--card-bg);
+            border: 2px solid var(--olive);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--olive);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            backdrop-filter: blur(4px);
+            background-color: color-mix(in srgb, var(--card-bg) 90%, transparent);
+        }
+        
+        .control-bubble:hover {
+            background-color: var(--olive);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* main wrapper – centers card */
         .join-wrapper {
             width: 100%;
             display: flex;
@@ -77,20 +112,19 @@
             align-items: center;
             justify-content: center;
             padding: 0 1rem;
-            max-height: 100vh;
         }
 
         /* ----- compact card (matching login compactness) ----- */
         .auth-card {
             background-color: var(--card-bg);
-            border-radius: 2.5rem;          /* login uses 2.5rem */
+            border-radius: 2.5rem;
             border: 1px solid rgba(85,107,47,0.25);
             box-shadow: 0 30px 60px -15px rgba(0,0,0,0.4);
             width: 100%;
-            max-width: 460px;              /* same as login */
-            padding: 1.2rem 1.8rem 1.8rem;  /* tightened padding */
+            max-width: 460px;
+            padding: 1.2rem 1.8rem 1.8rem;
             margin: 0 auto;
-            overflow: hidden;              /* no internal scroll */
+            overflow: hidden;
             display: block;
         }
 
@@ -144,39 +178,6 @@
             display: block;
             margin-top: -0.2rem;
             font-weight: 500;
-        }
-
-        /* button bar – matching login */
-        .button-bar {
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.6rem;
-            max-width: 460px;
-            margin: 0 auto 0.4rem;
-            width: 100%;
-        }
-        
-        .control-bubble {
-            width: 40px;
-            height: 40px;
-            background-color: var(--card-bg);
-            border: 2px solid var(--olive);
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--olive);
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
-            flex-shrink: 0;
-        }
-        
-        .control-bubble:hover {
-            background-color: var(--olive);
-            color: white;
-            transform: scale(1.05);
         }
 
         /* tabs – exactly as login style */
@@ -433,8 +434,8 @@
         /* toast – matching login */
         .toast-container {
             position: fixed;
-            top: 2rem;
-            right: 2rem;
+            top: 5rem;
+            right: 1.5rem;
             z-index: 9999;
         }
         
@@ -470,22 +471,24 @@
             .auth-card { padding: 1rem 1.2rem 1.5rem; }
             .logo-black-strip { padding: 0.6rem 1rem; }
             .logo-uniform .logo-text { font-size: 1.3rem; }
-            .control-bubble { width: 36px; height: 36px; }
+            .control-bubble { width: 40px; height: 40px; font-size: 1rem; }
+            .control-bar { top: 1rem; right: 1rem; }
+            .toast-container { top: 5rem; right: 1rem; }
         }
     </style>
 </head>
 <body>
-    <div class="join-wrapper">
-        <!-- Theme/RTL Buttons (exactly as login) -->
-        <div class="button-bar">
-            <button class="control-bubble" id="rtl-toggle" title="RTL/LTR">
-                <i class="fas fa-right-left"></i>
-            </button>
-            <button class="control-bubble" id="theme-toggle" title="Toggle theme">
-                <i class="fas fa-circle-half-stroke" id="theme-icon"></i>
-            </button>
-        </div>
+    <!-- Fixed Top-Right Control Buttons -->
+    <div class="control-bar">
+        <button class="control-bubble" id="rtl-toggle" title="RTL/LTR">
+            <i class="fas fa-right-left"></i>
+        </button>
+        <button class="control-bubble" id="theme-toggle" title="Toggle theme">
+            <i class="fas fa-circle-half-stroke" id="theme-icon"></i>
+        </button>
+    </div>
 
+    <div class="join-wrapper">
         <!-- Register Card – matching login color scheme -->
         <div class="auth-card">
             <!-- Logo strip (same as login) -->
@@ -501,13 +504,12 @@
                 </a>
             </div>
 
-            <!-- Tabs (only register active, sign in styled but disabled) -->
+            <!-- Tabs (only register active) -->
             <div class="tab-buttons">
-                
                 <button class="tab-btn active" id="tab-register">Join Now</button>
             </div>
 
-            <!-- Register Form (tight, with login colors) -->
+            <!-- Register Form -->
             <div id="register-form" class="tab-content active">
                 <h3>Start growing</h3>
                 <p class="subhead">Create your account.</p>
@@ -564,7 +566,7 @@
                         </div>
                     </div>
 
-                    <!-- Password strength (themed) -->
+                    <!-- Password strength -->
                     <div class="strength-container">
                         <div class="strength-bar-bg">
                             <div id="strength-bar" style="width: 85%; background-color: var(--olive);"></div>
@@ -583,7 +585,7 @@
                         <i class="fas fa-leaf"></i> Create Account
                     </button>
 
-                    <!-- Social (optional but matches login) -->
+                    <!-- Social options -->
                     <div style="margin-top: 1rem;">
                         <p style="text-align: center; font-size: 0.6rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; opacity:0.7;">Or sign up with</p>
                         <div class="social-buttons">
@@ -593,7 +595,7 @@
                     </div>
                 </form>
 
-                <!-- Login link (like login's "Create account" but reverse) -->
+                <!-- Login link -->
                 <div class="login-redirect">
                     Already have an account? <a href="login.html">Sign in here</a>
                 </div>
@@ -642,7 +644,7 @@
                 }
             };
 
-            // ========== STRENGTH METER (with olive theme) ==========
+            // ========== STRENGTH METER ==========
             window.updateStrength = function() {
                 const pass = document.getElementById('reg-password').value;
                 const bar = document.getElementById('strength-bar');
@@ -663,13 +665,13 @@
                 let message = '', color = '';
                 if (strength < 30) {
                     message = 'weak · add numbers & symbols';
-                    color = '#dc2626'; // keep distinct but not breaking theme
+                    color = '#dc2626';
                 } else if (strength < 60) {
                     message = 'medium · getting there';
                     color = '#f59e0b';
                 } else {
                     message = 'strong · good to go!';
-                    color = 'var(--olive)';  // use olive for strong
+                    color = 'var(--olive)';
                 }
                 
                 bar.style.width = strength + '%';
@@ -710,7 +712,6 @@
                 }
 
                 const btn = e.target.querySelector('button[type="submit"]');
-                const originalText = btn.innerHTML;
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> creating...';
                 btn.disabled = true;
 
